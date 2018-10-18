@@ -1,28 +1,51 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+import React from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import {
+  Link,
+} from 'react-router-dom'
+const QUERY = gql`
+  query Posts{
+    GetPosts{
+      _id
+      title
+      content
+      device
+      email
+      firstName
+      lastName
+      country
+      state
+      city
+      zip
+      createdAt
+      updatedAt
+    }
   }
-}
+`;
+
+const Posts = () => (
+  <Query query={QUERY} >
+    {({ data, error, loading }) => {
+      if (error) return '💩 Oops!';
+      if (loading) return 'Patience young grasshopper...';
+
+      return (
+        <React.Fragment>
+         
+          <h2>Posts</h2>
+          <ul>
+            {data.GetPosts.map(post => (
+              <li key={post.title}>{post.title}<Link to={"/post/"+post._id}>Read More</Link></li>
+            ))}
+          </ul>
+        </React.Fragment>
+      );
+    }}
+  </Query>
+);
+
+
+const App = () => <Posts/>;
 
 export default App;
