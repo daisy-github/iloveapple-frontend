@@ -1,0 +1,253 @@
+$white: #fff;
+$black: #000;
+$grey: #8c9597;
+$yellow: #f1d204;
+$purple: #6a4d8a;
+
+$fontlato: 'Lato', sans-serif;
+$fontpoppins: 'Poppins', sans-serif;
+*{
+	box-sizing: border-box;
+}
+body{
+	font-family: $fontlato;
+	h1,h2,h3,h4,h5,h6{
+		font-family: $fontpoppins !important;
+	}
+	p{
+		color: $grey;
+		font-size: 16px;
+	}
+}
+.wrapper{
+	padding: 50px 0 40px 0 !important;
+}
+.ui.button{
+	&.post_button{
+		background-color: $yellow;
+		color: $white;
+	    height: 45px;
+	    line-height: 45px;
+	    padding: 0 30px;
+	    display: inline-block;
+	    border-radius: 3px;
+	    font-weight: 700;
+	    font-size: 16px;
+		&:hover{
+			background-color:$purple;
+			opacity: 0.9;
+		}
+	}
+}
+.mobile_nav{
+	width: 100%;
+    background-color: #fff;
+    margin-top: 20px !important;
+    border-radius: 0px;
+    &.ui.vertical.menu{
+    	width: 100%;
+    	>.item{
+    		padding: 15px;
+    		line-height: 26px;
+			text-align: center;
+    	}
+    }
+
+}
+header{
+	.hidden.transition{
+		display: none !important;
+	}
+	.header_row{		
+		align-items: center !important;
+		margin-top: 15px;
+	}
+    width: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    &.child{
+    	background-size: 150%;
+    	transition: background-size 4s ease-in;
+		-moz-transition: background-size 4s ease-in;
+		-ms-transition: background-size 4s ease-in;
+		-o-transition: background-size 4s ease-in;
+		-webkit-transition: background-size 4s ease-in;
+    }
+	color: $white;
+	&.banner_home{
+	    background-image: url(https://wp-themes.com/wp-content/themes/illdy/layout/images/blog/blog-header.png);
+    	background-attachment: fixed;
+	}
+	.logo{
+		font-size: 60px;
+		color: $white;
+		font-family: inherit;
+	    line-height: 75px;
+    	font-weight: 700;
+	}
+	.navigation{
+		&.ui.menu {
+			a.item{
+				font-weight: 700;
+				color: $white;
+				font-size: 16px;
+	    		line-height: 26px;
+	    		&:hover{
+	    			color: $yellow;
+	    			text-decoration: none;
+	    			background: transparent;
+	    		}
+	    		&.button_mobile{
+	    			display: none;
+	    		}
+			}
+		}
+		
+	}
+	.banner_text{
+		padding: 130px 0;
+		.ui.header{
+			color: $white;
+			font-size: 65px;
+    		line-height: 70px;
+    		font-weight: 700;
+    		.sub.header{
+    			color: $white;
+    			font-size: 16px;
+    			margin-top: 10px;
+    		}
+		}
+		font-family: $fontpoppins;
+	}
+}
+
+.post_grid{
+	margin-bottom: 100px !important;
+	border-top: 0px !important;
+	.content{
+		a{
+			&.header{
+				    margin-bottom: 10px;
+				    line-height: 1.4;
+				    font-weight: 700;
+				    font-size: 25px;
+				    text-transform: uppercase;
+				&:hover{
+					text-decoration: none;
+    				color: $yellow !important;
+				}
+			}
+		}
+		.meta{
+			.list{
+				&.horizontal{
+					i{
+						font-size: 14px;
+						line-height: 1;
+						color: $yellow;
+					}
+					.content{
+						font-size: 14px;
+						&.meta_author{
+							color: $yellow;
+							font-weight: 500;
+						}
+					}
+				}
+			}
+		}
+		>.description{
+			margin-bottom: 40px;
+			font-size: 16px !important;
+			font-family: $fontlato;
+			line-height: 26px !important;
+			color: $grey !important;
+		}
+	}
+}
+.sidebar{
+    margin: 50px 0 40px 0;
+    padding-left: 10%;
+    border-left: 1px solid #ebebeb;
+    .list_block{
+    	margin-bottom: 75px;
+    }
+    h3{
+    	&.ui.header{
+    		font-size: 35px;
+		    line-height: 38px;
+		    font-weight: 700;
+		    color: $grey !important;
+		    margin-bottom: 30px;
+    	}
+    }
+    .accordion{
+    	.title{
+    		color: $grey !important;
+			font-size: 16px !important;
+			line-height: 25px;
+			&:hover{
+				color: $purple;
+			}
+			&.active{
+				.angle.right.icon{
+					-webkit-transform: rotate(90deg);
+    				transform: rotate(90deg);
+    				line-height: 15px;
+				}
+			}
+    	}
+    	.content{
+    		padding-left: 40px;
+    	}
+    }
+    .list{
+    	.item{
+    		line-height: 38px;
+    		.content{
+    			vertical-align: middle !important;
+    			
+    			a{
+    				color: $grey;
+    				font-size: 16px;
+    				&:hover{
+	    				color: $purple;
+	    			}
+    			}
+    			
+    		}
+    	}
+    }
+}
+/* aboutpage */
+.about{
+
+}
+@media screen and (max-width: 991px){
+header{
+	.logo{
+		font-size: 40px;
+		line-height: 40px;
+	}
+	.navigation{
+		&.ui.menu {
+			a.item{
+				&:not(.button_mobile){
+					display: none;
+				}
+				&.button_mobile{
+					display: flex;
+				}	    		
+			}
+		}		
+	}
+}	
+
+}
+@media screen and (max-width: 767px){
+	.sidebar{
+		border-left: 0px;
+	}
+}

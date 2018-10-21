@@ -87,19 +87,22 @@ class Create extends Component {
           /><br/>
           <select name="country" onChange={this.handleCountryChange}>
                       <option value="">Select Country</option>
-                   {countries != undefined ? countries.map(function(country){
-                      return(
-                        <option key={country.country} value={country.country}>{country.country}</option>
-                      )
+                   {/*{countries != undefined ? countries.map(function(country){
+                      return(*/}
+                        <option value="1">India</option>
+                        <option value="2">Indonesia</option>
+
+                      {/*)
                    }) : null }
+                   */}
           </select><br/>
           <select name="state">
                       <option value="">Select State</option>
-                   {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
-                      return(
-                        <option key={state} value={state}>{state}</option>
-                      )
-                   }) : null }
+                   {/*{{this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
+                      return(*/}
+                        <option value="1">Punjab</option>
+                      {/*{)
+                   }) : null }*/}
           </select>
           <br/>
           <input

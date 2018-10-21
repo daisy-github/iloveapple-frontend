@@ -6,16 +6,52 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+
 import App from './App'
 import Create from './Create'
 import About from './About'
 import Post from './Post'
+import { Grid, Container, Menu, Header, List, Transition, Image, Icon } from 'semantic-ui-react'
 class RootContainer extends Component {
+  state = {visible: false }
+  handleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleItemClick = (e, { name }) => this.setState({ shownav: !this.state.shownav })
   render() {
+    
+    const { visible } = this.state
     return (
       <Router>
+
         <Fragment>
+          <Grid>
+          <header className="banner_home" className={this.state.shownav? "banner_home child" : "banner_home"}>
+          
           {this.renderNavBar()}
+          <Transition visible={visible} animation='slide right' duration={400} >
+            
+               <Menu vertical className="mobile_nav">
+                <Menu.Item as={Link} to="/">
+                 Home
+                </Menu.Item>
+                <Menu.Item as={Link} to="/about">About</Menu.Item>
+                <Menu.Item as={Link} to="/create">Add Post</Menu.Item>
+              </Menu>
+            
+          </Transition>
+          
+          <Container>
+            <Grid.Row className="banner_text">
+              <Grid.Column>
+                <Header as='h2' textAlign='center'>
+                  Theme Preview
+                  <Header.Subheader>Previewing Another WordPress Blog</Header.Subheader>
+                </Header>
+              </Grid.Column>
+            </Grid.Row> 
+          </Container>
+          
+          </header>
+          </Grid>
           {this.renderRoute()}
         </Fragment>
       </Router>
@@ -23,37 +59,67 @@ class RootContainer extends Component {
   }
 
    renderNavBar() {
+    
     return (
-      <nav className="pa3 pa4-ns">
-        <Link className="link dim black b f6 f5-ns dib mr3" to="/" title="Home">
-          Home
-        </Link><br/>
-        <Link className="link dim black b f6 f5-ns dib mr3" to="/about" title="About">
-          About
-        </Link><br/>
-        <NavLink
-          className="link dim f6 f5-ns dib mr3 black"
-          activeClassName="gray"
-          exact={true}
-          to="/create"
-          title="Post"
-        >
-          Add Post
-        </NavLink>
-      </nav>
+      <Container>
+      <Grid>        
+           <Grid.Row className="header_row">
+              <Grid.Column computer={6} mobile={10} tablet={6}>
+                <Link to="/" className="logo">Theme Preview</Link>
+              </Grid.Column>
+              <Grid.Column computer={10} mobile={6} tablet={10}>
+                <Menu secondary className="navigation">
+                  <Menu.Menu position='right'>
+                      <Menu.Item 
+                      as={Link}
+                      to="/"
+                      name='Home' 
+                      
+                      />
+                      <Menu.Item
+                        as={Link}
+                        to="/about"
+                        name='About'
+                        
+                      />
+                      <Menu.Item
+                        as={Link}
+                        to="/create"
+                        name='Add Post'
+                        
+                      />                      
+                      <Menu.Item
+                        name='bars'                        
+                        onClick={this.handleVisibility}
+                        className="button_mobile"
+                      >
+                        <Icon name='bars' />
+                      </Menu.Item>
+                  </Menu.Menu>
+                </Menu>
+              </Grid.Column>
+           </Grid.Row>        
+      </Grid>
+      </Container>
     )
   }
 
   renderRoute() {
+
     return (
-      <div className="fl w-100 pl4 pr4">
-        <Switch>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/" component={App} />
-          <Route exact path="/create" component={Create} />
-          <Route exact path="/post/:id" component={Post} />
-        </Switch>
-      </div>
+    <Grid>
+      <Container>
+          <Grid>
+            <Switch>
+              <Route  path="/about" component={About} />
+              <Route exact path="/" component={App} />
+              <Route  path="/create" component={Create} />
+              <Route  path="/post/:id" component={Post} />
+            </Switch>
+          </Grid>
+      </Container>
+      </Grid>
+      
     )
   }
 }
