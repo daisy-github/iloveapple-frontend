@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { graphql,compose } from 'react-apollo';
 import  { gql } from 'apollo-boost';
+import { Grid, Container, Menu, Header, List, Transition, Image, Icon, Form, Select, Button  } from 'semantic-ui-react'
+import TextField from '@material-ui/core/TextField';
 
 class Create extends Component {
   state = {
@@ -38,11 +40,145 @@ class Create extends Component {
 
   render() {
     let countries = this.state.countries;
+    const genderOptions = [
+      { key: 'm', text: 'Male', value: 'male' },
+      { key: 'f', text: 'Female', value: 'female' },
+    ]
    // let states = this.state.states;
    console.log('=======countries=====',this.state);
     //countries.map(function(a){console.log(a)})
     return (
-      <div className="pa4 flex justify-center bg-white">
+      <Grid.Row className="wrapper">
+        <Grid.Column computer={2} mobile={16} tablet={16}></Grid.Column>
+        <Grid.Column computer={12} mobile={16} tablet={16}>
+          <Header as="h2">Create Post</Header>
+          <form onSubmit={this.handlePost}>
+            <div className="full_width">
+              <TextField
+                id="outlined-dense"
+                label="Title"
+                className="form_field"
+                margin="dense"
+                variant="outlined"
+                fullWidth="true"
+                onChange={e => this.setState({ title: e.target.value })}
+              />
+            </div>
+            <div className="full_width">
+              <TextField
+                id="outlined-textarea"
+                label="Content"
+                placeholder="Content"
+                multiline
+                className="form_field textarea"
+                margin="normal"
+                variant="outlined"
+                rows='4'
+                fullWidth="true"
+                onChange={e => this.setState({ content: e.target.value })}
+                value={this.state.content}
+
+              />
+
+            </div>
+            <div className="full_width">
+              <TextField
+                id="outlined-dense"
+                label="Device"
+                className="form_field"
+                margin="dense"
+                variant="outlined"
+                fullWidth="true"
+                onChange={e => this.setState({ device: e.target.value })}
+                value={this.state.device}
+
+              />
+            </div>
+            <div className="equal_width">            
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="First Name"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ firstName: e.target.value })}
+                  value={this.state.firstName}
+
+                />
+              </div>
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="Last Name"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ lastName: e.target.value })}
+                  value={this.state.lastName}
+
+                />
+              </div>
+            </div>
+            <Form>
+              <Form.Group widths='equal'>
+                <Form.Field
+                  control={Select}
+                  options={genderOptions}
+                  label={{ children: 'Country', htmlFor: 'form-select-control-gender' }}
+                  placeholder='Country'
+                  search
+                  searchInput={{ id: 'form-select-control-gender' }}
+                />
+                <Form.Field
+                  control={Select}
+                  options={genderOptions}
+                  label={{ children: 'State', htmlFor: 'form-select-control-gender' }}
+                  placeholder='State'
+                  search
+                  searchInput={{ id: 'form-select-control-gender' }}
+                />
+              </Form.Group>
+            </Form>
+            <div className="equal_width">            
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="City"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ city: e.target.value })}
+                  value={this.state.city}
+
+
+                />
+              </div>
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="Zipcode"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ zip: e.target.value })}
+                  value={this.state.zip}
+
+
+                />
+              </div>
+            </div>
+            <div className="form_action">
+            <Button type='submit' className=" custom post_button" disabled={!this.state.content || !this.state.title}>Create</Button>
+            <Button className="custom" color='grey' onClick={this.props.history.goBack}>Cancel</Button>
+            </div>
+          </form>
+        </Grid.Column>
+      {/*<div className="pa4 flex justify-center bg-white">
         <form onSubmit={this.handlePost}>
           <h1>Create Post</h1>
           <input
@@ -87,22 +223,22 @@ class Create extends Component {
           /><br/>
           <select name="country" onChange={this.handleCountryChange}>
                       <option value="">Select Country</option>
-                   {/*{countries != undefined ? countries.map(function(country){
-                      return(*/}
+                   {countries != undefined ? countries.map(function(country){
+                      return(
                         <option value="1">India</option>
                         <option value="2">Indonesia</option>
 
-                      {/*)
+                      )
                    }) : null }
-                   */}
+                  
           </select><br/>
           <select name="state">
                       <option value="">Select State</option>
-                   {/*{{this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
-                      return(*/}
+                   {{this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
+                      return(
                         <option value="1">Punjab</option>
-                      {/*{)
-                   }) : null }*/}
+                      )
+                   }) : null }
           </select>
           <br/>
           <input
@@ -133,7 +269,8 @@ class Create extends Component {
             or cancel
           </a>
         </form>
-      </div>
+      </div>*/}
+      </Grid.Row>
     )
   }
 

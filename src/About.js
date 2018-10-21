@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Container, Menu, Header, List, Transition, Image, Icon } from 'semantic-ui-react'
+import { Grid, Header } from 'semantic-ui-react'
 
 const AboutDiv = () => (
   <Grid.Row className="wrapper">

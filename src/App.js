@@ -6,7 +6,7 @@ import Sidebar from './Sidebar'
 import {
   Link,
 } from 'react-router-dom'
-import { Grid, Container, Menu, Header, Button, Icon, Image, Item, Label, List } from 'semantic-ui-react'
+import { Grid, Icon, Item} from 'semantic-ui-react'
 
 const QUERY = gql`
   query Posts{

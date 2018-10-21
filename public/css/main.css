@@ -12,16 +12,17 @@ body {
 .wrapper {
   padding: 50px 0 40px 0 !important; }
 
-.ui.button.post_button {
-  background-color: #f1d204;
-  color: #fff;
+.ui.button.custom {
   height: 45px;
   line-height: 45px;
   padding: 0 30px;
   display: inline-block;
   border-radius: 3px;
   font-weight: 700;
-  font-size: 16px; }
+  font-size: 16px;
+  color: #fff; }
+.ui.button.post_button {
+  background-color: #f1d204; }
   .ui.button.post_button:hover {
     background-color: #6a4d8a;
     opacity: 0.9; }
@@ -153,6 +154,31 @@ header {
           color: #6a4d8a; }
 
 /* aboutpage */
+/* create post */
+form .ui.selection.dropdown {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  border-radius: 0px; }
+  form .ui.selection.dropdown > .dropdown.icon {
+    top: 15px !important; }
+form .form_field {
+  margin-bottom: 10px !important; }
+  form .form_field fieldset {
+    border-radius: 0px !important; }
+  form .form_field.textarea {
+    margin-top: 8px; }
+form .form_action {
+  margin-top: 30px; }
+
+.equal_width {
+  display: flex; }
+  .equal_width > div {
+    width: 50%; }
+    .equal_width > div:first-child {
+      padding-right: .5em; }
+    .equal_width > div:last-child {
+      padding-left: .5em; }
+
 @media screen and (max-width: 991px) {
   header .logo {
     font-size: 40px;

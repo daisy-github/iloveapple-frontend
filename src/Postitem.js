@@ -34,7 +34,7 @@ class PostItem extends Component {
             </Item.Meta>
             <Item.Description>test</Item.Description>
             <Item.Extra>
-              <Button primary floated='left' className="post_button">
+              <Button primary floated='left' className="custom post_button">
                 Read more
                 
               </Button>
