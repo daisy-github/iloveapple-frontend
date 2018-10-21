@@ -44,14 +44,11 @@ class Create extends Component {
       { key: 'm', text: 'Male', value: 'male' },
       { key: 'f', text: 'Female', value: 'female' },
     ]
-   // let states = this.state.states;
-   console.log('=======countries=====',this.state);
-    //countries.map(function(a){console.log(a)})
     return (
       <Grid.Row className="wrapper">
         <Grid.Column computer={2} mobile={16} tablet={16}></Grid.Column>
         <Grid.Column computer={12} mobile={16} tablet={16}>
-          <Header as="h2">Create Post</Header>
+          <Header as="h2">Add Experience</Header>
           <form onSubmit={this.handlePost}>
             <div className="full_width">
               <TextField

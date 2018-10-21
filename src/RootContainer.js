@@ -43,8 +43,7 @@ class RootContainer extends Component {
             <Grid.Row className="banner_text">
               <Grid.Column>
                 <Header as='h2' textAlign='center'>
-                  Theme Preview
-                  <Header.Subheader>Previewing Another WordPress Blog</Header.Subheader>
+                  Share your amazing experience
                 </Header>
               </Grid.Column>
             </Grid.Row> 
@@ -65,7 +64,7 @@ class RootContainer extends Component {
       <Grid>        
            <Grid.Row className="header_row">
               <Grid.Column computer={6} mobile={10} tablet={6}>
-                <Link to="/" className="logo">Theme Preview</Link>
+                <Link to="/" className="logo">i💖Apple</Link>
               </Grid.Column>
               <Grid.Column computer={10} mobile={6} tablet={10}>
                 <Menu secondary className="navigation">
