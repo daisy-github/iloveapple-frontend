@@ -32,29 +32,22 @@ const Posts = () => (
       <Query query={QUERY} >
         {({ data, error, loading }) => {
           if (error) return '💩 Oops!';
-          if (loading) return <Grid.Row>
+          if (loading) return 'Loading...';
+
+          return (
+            <React.Fragment>
+             <Grid.Row>
               <Grid.Column computer={10} mobile={16} tablet={10}>
                 <Item.Group divided className="wrapper">
-                  <PostItem />
-                  <PostItem />
-                  <PostItem />
-                  <PostItem />
+                  {data.GetPosts.map(post => (
+                    <PostItem post={post}/>
+                ))}
                 </Item.Group>
               </Grid.Column>
               <Grid.Column computer={6} mobile={16} tablet={6}>
                 <Sidebar />
               </Grid.Column>
-            </Grid.Row>;
-
-          return (
-            <React.Fragment>
-             
-              <h2>Posts</h2>
-              <ul>
-                {data.GetPosts.map(post => (
-                  <li key={post.title}>{post.title}<Link to={"/post/"+post._id}>Read More</Link></li>
-                ))}
-              </ul>
+            </Grid.Row>
             </React.Fragment>
               
             

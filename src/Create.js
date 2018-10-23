@@ -121,22 +121,22 @@ class Create extends Component {
             </div>
             <Form>
               <Form.Group widths='equal'>
-                <Form.Field
-                  control={Select}
-                  options={genderOptions}
-                  label={{ children: 'Country', htmlFor: 'form-select-control-gender' }}
-                  placeholder='Country'
-                  search
-                  searchInput={{ id: 'form-select-control-gender' }}
-                />
-                <Form.Field
-                  control={Select}
-                  options={genderOptions}
-                  label={{ children: 'State', htmlFor: 'form-select-control-gender' }}
-                  placeholder='State'
-                  search
-                  searchInput={{ id: 'form-select-control-gender' }}
-                />
+                <select name="country" onChange={this.handleCountryChange}>
+                      <option value="">Select Country</option>
+                   {countries != undefined ? countries.map(function(country){
+                      return(
+                        <option key={country.country} value={country.country}>{country.country}</option>
+                      )
+                   }) : null }
+          </select><br/>
+          <select name="state">
+                      <option value="">Select State</option>
+                   {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
+                      return(
+                        <option key={state} value={state}>{state}</option>
+                      )
+                   }) : null }
+          </select>
               </Form.Group>
             </Form>
             <div className="equal_width">            
