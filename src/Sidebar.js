@@ -24,7 +24,7 @@ class Sidebar extends Component {
           <Accordion>
             <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
               <Icon name='angle right' />
-              Semantic UI
+              iphone
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0}>
               <List>
@@ -35,7 +35,7 @@ class Sidebar extends Component {
             </Accordion.Content>
             <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
               <Icon name='angle right' />
-              Semantic UI
+              ipad
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 1}>
               <List>
@@ -43,8 +43,20 @@ class Sidebar extends Component {
                   <List.Content><Link to="/">Semantic UI</Link></List.Content>
                 </List.Item>
               </List>
-            </Accordion.Content>                   
+            </Accordion.Content>   
+            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
+              <Icon name='angle right' />
+              iwatch
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1}>
+              <List>
+                <List.Item>                        
+                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
+                </List.Item>
+              </List>
+            </Accordion.Content>                  
           </Accordion>
+
         </Grid.Column> 
 
         <Grid.Column className="list_block">

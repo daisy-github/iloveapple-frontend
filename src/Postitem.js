@@ -4,10 +4,10 @@ import {
   Link,
 } from 'react-router-dom'
 import { Grid, Header, Button, Icon, Item, Label, List, Accordion } from 'semantic-ui-react'
-
+import moment from 'moment';
 class PostItem extends Component {    
   render() {
-    
+    const createdAt = moment(this.props.post.createdAt).format('MMMM DD YYYY');
     return (
       <Item className="post_grid">                 
           <Item.Content>
@@ -20,7 +20,7 @@ class PostItem extends Component {
                 </List.Item>
                 <List.Item>
                    <List.Icon name='calendar alternate' />
-                  <List.Content verticalAlign='middle'>{this.props.post.createdAt}</List.Content>
+                  <List.Content verticalAlign='middle'>{createdAt}</List.Content>
                 </List.Item>
                 <List.Item>
                    <List.Icon name='folder outline' />
