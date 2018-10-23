@@ -11,6 +11,29 @@ body {
 
 .wrapper {
   padding: 50px 0 40px 0 !important; }
+  .wrapper.thanks p {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    text-align: center; }
+
+.readMoreText {
+  height: 45px;
+  line-height: 45px;
+  padding: 0 30px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  background-color: #f1d204;
+  display: block;
+  width: 140px;
+  margin-top: 40px;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: #fff !important; }
+  .readMoreText:hover {
+    background-color: #6a4d8a;
+    opacity: 0.9; }
 
 .ui.button.custom {
   height: 45px;
@@ -113,7 +136,7 @@ header {
       color: #f1d204;
       font-weight: 500; }
   .post_grid .content > .description {
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
     font-size: 16px !important;
     font-family: "Lato", sans-serif;
     line-height: 26px !important;
@@ -155,6 +178,12 @@ header {
 
 /* aboutpage */
 /* create post */
+form select {
+  -webkit-appearance: menulist-button;
+  padding: 13px 10px;
+  width: 100%; }
+  form select:invalid {
+    color: rgba(0, 0, 0, 0.54); }
 form .ui.selection.dropdown {
   padding-top: 15px !important;
   padding-bottom: 15px !important;
@@ -186,9 +215,17 @@ form .form_action {
   header .navigation.ui.menu a.item:not(.button_mobile) {
     display: none; }
   header .navigation.ui.menu a.item.button_mobile {
-    display: flex; } }
+    display: flex;
+    padding: 0;
+    margin: 0; }
+    header .navigation.ui.menu a.item.button_mobile i {
+      margin-right: 0px; } }
 @media screen and (max-width: 767px) {
   .sidebar {
-    border-left: 0px; } }
+    border-left: 0px; }
+
+  header .banner_text .ui.header {
+    font-size: 35px;
+    line-height: 45px; } }
 
 /*# sourceMappingURL=main.css.map */

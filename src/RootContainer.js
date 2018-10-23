@@ -11,14 +11,17 @@ import App from './App'
 import Create from './Create'
 import About from './About'
 import Post from './Post'
+import Thankyou from './Thankyou'
+
 import { Grid, Container, Menu, Header, List, Transition, Image, Icon } from 'semantic-ui-react'
 class RootContainer extends Component {
   state = {visible: false }
   handleVisibility = () => this.setState({ visible: !this.state.visible })
   handleItemClick = (e, { name }) => this.setState({ shownav: !this.state.shownav })
   render() {
-    
+    console.log("kamal",window.location.pathname);
     const { visible } = this.state
+    var path = window.location.pathname;
     return (
       <Router>
 
@@ -43,7 +46,7 @@ class RootContainer extends Component {
             <Grid.Row className="banner_text">
               <Grid.Column>
                 <Header as='h2' textAlign='center'>
-                  Share your amazing experience
+                {path=="/thanks" ?"Thank you for sharing your experience": "Share your amazing experience"}
                 </Header>
               </Grid.Column>
             </Grid.Row> 
@@ -114,6 +117,8 @@ class RootContainer extends Component {
               <Route exact path="/" component={App} />
               <Route  path="/create" component={Create} />
               <Route  path="/post/:id" component={Post} />
+              <Route  path="/thanks" component={Thankyou} />
+
             </Switch>
           </Grid>
       </Container>

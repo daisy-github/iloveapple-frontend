@@ -9,7 +9,8 @@ class Create extends Component {
   state = {
     title: '',
     content: '',
-    device:''
+    device:'',
+    inprogress: false
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -119,26 +120,28 @@ class Create extends Component {
                 />
               </div>
             </div>
-            <Form>
-              <Form.Group widths='equal'>
-                <select name="country" onChange={this.handleCountryChange}>
-                      <option value="">Select Country</option>
-                   {countries != undefined ? countries.map(function(country){
-                      return(
-                        <option key={country.country} value={country.country}>{country.country}</option>
-                      )
-                   }) : null }
-          </select><br/>
-          <select name="state">
+              <div className="equal_width">
+               <div>
+                  <select name="country" onChange={this.handleCountryChange}>
+                        <option value="">Select Country</option>
+                     {countries != undefined ? countries.map(function(country){
+                       return(
+                          <option key={country.country} value={country.country}>{country.country}</option>
+                        )
+                     }) : null }
+                  </select>
+                </div>
+                <div>
+                  <select name="state">
                       <option value="">Select State</option>
                    {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
                       return(
                         <option key={state} value={state}>{state}</option>
                       )
                    }) : null }
-          </select>
-              </Form.Group>
-            </Form>
+                  </select>
+                </div>
+              </div>
             <div className="equal_width">            
               <div>
                 <TextField
@@ -170,7 +173,7 @@ class Create extends Component {
               </div>
             </div>
             <div className="form_action">
-            <Button type='submit' className=" custom post_button" disabled={!this.state.content || !this.state.title}>Create</Button>
+            <Button type='submit' className=" custom post_button" disabled={!this.state.content || !this.state.title} loading={this.state.inprogress}>Create</Button>
             <Button className="custom" color='grey' onClick={this.props.history.goBack}>Cancel</Button>
             </div>
           </form>
@@ -273,6 +276,7 @@ class Create extends Component {
 
   handlePost = async e => {
     e.preventDefault()
+    this.setState({inprogress: true});
     const { title, content, device } = this.state
     await this.props.createPost({
       data: { 
@@ -281,7 +285,9 @@ class Create extends Component {
          device 
        },
     })
-    this.props.history.replace('/')
+    this.props.history.replace('/thanks')
+    this.setState({inprogress: false});
+
   }
 }
 

@@ -4,7 +4,8 @@ import {
   Link,
 } from 'react-router-dom'
 import { Grid, Header, Button, Icon, Item, Label, List, Accordion } from 'semantic-ui-react'
-
+import ReadMoreReact from 'read-more-react';
+import ReadMoreAndLess from 'react-read-more-less';
 class PostItem extends Component {    
   render() {
     
@@ -32,13 +33,23 @@ class PostItem extends Component {
                 </List.Item>*/}
               </List>
             </Item.Meta>
-            <Item.Description>{this.props.post.content}</Item.Description>
-            <Item.Extra>
-              <Button primary floated='left' className="custom post_button">
-                Read more
-                
-              </Button>
-            </Item.Extra>
+            <Item.Description>
+            <ReadMoreAndLess
+                ref={this.ReadMore}
+                className="read-more-content"
+                charLimit={200}
+                readMoreText="Read more"
+                readLessText="Read less"
+            >
+                {this.props.post.content}
+            </ReadMoreAndLess>
+            </Item.Description>
+            {/*<Item.Extra>
+                          <Button primary floated='left' className="custom post_button">
+                            Read more
+                            
+                          </Button>
+                        </Item.Extra>*/}
           </Item.Content>
         </Item> 
     )

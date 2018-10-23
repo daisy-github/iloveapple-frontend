@@ -21,6 +21,34 @@ body{
 }
 .wrapper{
 	padding: 50px 0 40px 0 !important;
+	&.thanks{
+		p{
+			font-family: $fontpoppins;
+			font-size: 18px;
+			text-align: center;
+		}
+	}
+}
+.readMoreText{
+	height: 45px;
+	    line-height: 45px;
+	    padding: 0 30px;	    
+	    border-radius: 3px;
+	    font-weight: 700;
+	    font-size: 16px;
+	    color: $white;
+		background-color: $yellow;
+		display: block;
+		width: 140px;
+		margin-top: 40px;
+		text-transform: capitalize;
+		cursor: pointer;
+		color: $white !important;
+		&:hover{
+			background-color:$purple;
+			opacity: 0.9;
+		}
+
 }
 .ui.button{
 	&.custom{
@@ -167,7 +195,7 @@ header{
 			}
 		}
 		>.description{
-			margin-bottom: 40px;
+			/*margin-bottom: 40px;*/
 			font-size: 16px !important;
 			font-family: $fontlato;
 			line-height: 26px !important;
@@ -235,6 +263,14 @@ header{
 }
 /* create post */
 form{
+	select {
+	  	-webkit-appearance: menulist-button;
+	    padding: 13px 10px;
+	    width: 100%;
+	    &:invalid{
+	    	color: rgba(0, 0, 0, 0.54);
+	    }
+	}
 	.ui.selection.dropdown{
 		padding-top: 15px !important;
 		padding-bottom:  15px !important;
@@ -285,6 +321,11 @@ header{
 				}
 				&.button_mobile{
 					display: flex;
+					padding: 0;
+					margin: 0;
+					i{
+						margin-right: 0px;
+					}
 				}	    		
 			}
 		}		
@@ -296,4 +337,12 @@ header{
 	.sidebar{
 		border-left: 0px;
 	}
+	header{
+		.banner_text{
+			.ui.header{
+				font-size: 35px;
+				line-height: 45px;
+			}
+		} 
+	} 
 }
