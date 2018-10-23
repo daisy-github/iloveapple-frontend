@@ -6,7 +6,7 @@ import Sidebar from './Sidebar'
 import {
   Link,
 } from 'react-router-dom'
-import { Grid, Icon, Item} from 'semantic-ui-react'
+import { Grid, Icon, Item, Loader} from 'semantic-ui-react'
 
 const QUERY = gql`
   query Posts{
@@ -32,7 +32,11 @@ const Posts = () => (
       <Query query={QUERY} >
         {({ data, error, loading }) => {
           if (error) return '💩 Oops!';
-          if (loading) return 'Loading...';
+          if (loading) return <Grid.Row>
+              <Grid.Column computer={16} mobile={16} tablet={16} style={{padding:'40px 0'}}>
+                <Loader active inline='centered' />
+            </Grid.Column>
+          </Grid.Row>;
 
           return (
             <React.Fragment>

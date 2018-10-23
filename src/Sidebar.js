@@ -22,44 +22,48 @@ class Sidebar extends Component {
         <Grid.Column className="list_block">
           <Header as='h3'  content='Categories' />
           <Accordion>
+          <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             All
+            </Accordion.Title>  
             <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-              <Icon name='angle right' />
-              iphone
+             
+              iPhone
             </Accordion.Title>
-            <Accordion.Content active={activeIndex === 0}>
-              <List>
-                <List.Item>                        
-                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
-                </List.Item>
-              </List>
-            </Accordion.Content>
-            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
-              <Icon name='angle right' />
-              ipad
+            
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             
+              iPad
             </Accordion.Title>
-            <Accordion.Content active={activeIndex === 1}>
-              <List>
-                <List.Item>                        
-                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
-                </List.Item>
-              </List>
-            </Accordion.Content>   
-            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
-              <Icon name='angle right' />
-              iwatch
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             
+              iPod Touch
             </Accordion.Title>
-            <Accordion.Content active={activeIndex === 1}>
-              <List>
-                <List.Item>                        
-                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
-                </List.Item>
-              </List>
-            </Accordion.Content>                  
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             
+              MacBook
+            </Accordion.Title>  
+               <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             
+              Mac Mini
+            </Accordion.Title> 
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             iMac
+            </Accordion.Title>
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             Apple TV
+            </Accordion.Title>   
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             Apple Watch
+            </Accordion.Title>   
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+             Other
+            </Accordion.Title> 
+                        
           </Accordion>
 
         </Grid.Column> 
 
-        <Grid.Column className="list_block">
+        {/*<Grid.Column className="list_block">
           <Header as='h3'  content='Archive' />
           <Accordion>
             <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
@@ -85,7 +89,7 @@ class Sidebar extends Component {
               </List>
             </Accordion.Content>                   
           </Accordion>
-        </Grid.Column>         
+        </Grid.Column>    */}     
       </Grid.Row> 
     )
   }
