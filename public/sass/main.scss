@@ -9,6 +9,13 @@ $fontpoppins: 'Poppins', sans-serif;
 *{
 	box-sizing: border-box;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 body{
 	font-family: $fontlato;
 	h1,h2,h3,h4,h5,h6{
@@ -22,10 +29,24 @@ body{
 .wrapper{
 	padding: 50px 0 40px 0 !important;
 	&.thanks{
+		.inner{
+			display: flex !important;
+			flex-direction: column;
+			align-items:  center;
+			justify-content: center;
+			i{
+				font-size: 50px;
+				color: green;
+			}
+		}
 		p{
 			font-family: $fontpoppins;
 			font-size: 18px;
 			text-align: center;
+			&:first-child{
+				font-size: 30px;
+				margin-top: 30px;
+			}
 		}
 	}
 }
@@ -261,6 +282,8 @@ header{
 .about{
 
 }
+/* thank you page */
+
 /* create post */
 form{
 	select {

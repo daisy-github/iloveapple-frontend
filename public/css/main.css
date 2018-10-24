@@ -1,6 +1,13 @@
 * {
   box-sizing: border-box; }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; }
+
 body {
   font-family: "Lato", sans-serif; }
   body h1, body h2, body h3, body h4, body h5, body h6 {
@@ -11,10 +18,21 @@ body {
 
 .wrapper {
   padding: 50px 0 40px 0 !important; }
+  .wrapper.thanks .inner {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .wrapper.thanks .inner i {
+      font-size: 50px;
+      color: green; }
   .wrapper.thanks p {
     font-family: "Poppins", sans-serif;
     font-size: 18px;
     text-align: center; }
+    .wrapper.thanks p:first-child {
+      font-size: 30px;
+      margin-top: 30px; }
 
 .readMoreText {
   height: 45px;
@@ -177,6 +195,7 @@ header {
           color: #6a4d8a; }
 
 /* aboutpage */
+/* thank you page */
 /* create post */
 form select {
   -webkit-appearance: menulist-button;

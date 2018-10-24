@@ -46,12 +46,11 @@ class RootContainer extends Component {
             <Grid.Row className="banner_text">
               <Grid.Column>
                 <Header as='h2' textAlign='center'>
-                {path=="/thanks" ?"Thank you for sharing your experience": "Share your amazing experience"}
+                  Share your amazing experience
                 </Header>
               </Grid.Column>
             </Grid.Row> 
-          </Container>
-          
+          </Container>          
           </header>
           </Grid>
           {this.renderRoute()}

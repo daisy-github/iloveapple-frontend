@@ -167,6 +167,7 @@ class Create extends Component {
                   fullWidth="true"
                   onChange={e => this.setState({ zip: e.target.value })}
                   value={this.state.zip}
+                  type="number"
 
 
                 />
