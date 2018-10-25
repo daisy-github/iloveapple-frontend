@@ -10,7 +10,19 @@ class Create extends Component {
     title: '',
     content: '',
     device:'',
-    inprogress: false
+    firstName:'',
+    lastName:'',
+    city:'',
+    zip:'',
+
+    deviceerror:false,
+    fnameerror:false,
+    lnameerror:false,
+    cityerror:false,
+    ziperror:false,
+    inprogress: false,
+    countryerror:false,
+    stateerror:false
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -87,9 +99,9 @@ class Create extends Component {
                 margin="dense"
                 variant="outlined"
                 fullWidth="true"
-                onChange={e => this.setState({ device: e.target.value })}
+                onChange={e => this.setState({ device: e.target.value, deviceerror: false })}
                 value={this.state.device}
-
+                helperText={this.state.deviceerror?"Please enter device name":""}
               />
             </div>
             <div className="equal_width">            
@@ -101,9 +113,9 @@ class Create extends Component {
                   margin="dense"
                   variant="outlined"
                   fullWidth="true"
-                  onChange={e => this.setState({ firstName: e.target.value })}
+                  onChange={e => this.setState({ firstName: e.target.value, fnameerror: false})}
                   value={this.state.firstName}
-
+                  helperText={this.state.fnameerror?"Please enter First name":""}
                 />
               </div>
               <div>
@@ -114,15 +126,15 @@ class Create extends Component {
                   margin="dense"
                   variant="outlined"
                   fullWidth="true"
-                  onChange={e => this.setState({ lastName: e.target.value })}
+                  onChange={e => this.setState({ lastName: e.target.value, lnameerror: false })}
                   value={this.state.lastName}
-
+                  helperText={this.state.lnameerror?"Please enter Last name":""}
                 />
               </div>
             </div>
               <div className="equal_width">
                <div>
-                  <select name="country" onChange={this.handleCountryChange}>
+                  <select name="country" onChange={this.handleCountryChange} id="country">
                         <option value="">Select Country</option>
                      {countries != undefined ? countries.map(function(country){
                        return(
@@ -130,9 +142,10 @@ class Create extends Component {
                         )
                      }) : null }
                   </select>
+                  {this.state.countryerror?<p className="errortext">Please select country</p>:""}
                 </div>
                 <div>
-                  <select name="state">
+                  <select name="state" id="state">
                       <option value="">Select State</option>
                    {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
                       return(
@@ -140,6 +153,7 @@ class Create extends Component {
                       )
                    }) : null }
                   </select>
+                  {this.state.stateerror?<p className="errortext">Please select state</p>:""}
                 </div>
               </div>
             <div className="equal_width">            
@@ -151,9 +165,9 @@ class Create extends Component {
                   margin="dense"
                   variant="outlined"
                   fullWidth="true"
-                  onChange={e => this.setState({ city: e.target.value })}
+                  onChange={e => this.setState({ city: e.target.value, cityerror: false})}
                   value={this.state.city}
-
+                  helperText={this.state.cityerror?"Please enter City":""}
 
                 />
               </div>
@@ -165,10 +179,10 @@ class Create extends Component {
                   margin="dense"
                   variant="outlined"
                   fullWidth="true"
-                  onChange={e => this.setState({ zip: e.target.value })}
+                  onChange={e => this.setState({ zip: e.target.value, ziperror: false })}
                   value={this.state.zip}
                   type="number"
-
+                  helperText={this.state.ziperror?"Please enter Zipcode":""}
 
                 />
               </div>
@@ -222,7 +236,7 @@ class Create extends Component {
             type="text"
             value={this.state.lastName}
           /><br/>
-          <select name="country" onChange={this.handleCountryChange}>
+          <select name="country" onChange={this.handleCountryChange} id="country">
                       <option value="">Select Country</option>
                    {countries != undefined ? countries.map(function(country){
                       return(
@@ -231,9 +245,10 @@ class Create extends Component {
 
                       )
                    }) : null }
+                   {this.state.countryerror?<p className="errortext">Please select country</p>:""}
                   
           </select><br/>
-          <select name="state">
+          <select name="state" id="state">
                       <option value="">Select State</option>
                    {{this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
                       return(
@@ -241,6 +256,8 @@ class Create extends Component {
                       )
                    }) : null }
           </select>
+          {this.state.stateerror ? <p className="errortext">Please select state</p>:""}
+          
           <br/>
           <input
             autoFocus
@@ -277,17 +294,72 @@ class Create extends Component {
 
   handlePost = async e => {
     e.preventDefault()
+    var country = document.getElementById('country');
+    var state = document.getElementById('state');
+    console.log( "kk",country.value );
     this.setState({inprogress: true});
-    const { title, content, device } = this.state
-    await this.props.createPost({
-      data: { 
-         title, 
-         content,
-         device 
-       },
-    })
-    this.props.history.replace('/thanks')
-    this.setState({inprogress: false});
+     if(this.state.zip==""  &&this.state.city==""  &&this.state.lastName==""  &&this.state.firstName=="" && this.state.device==""|| state.value=="" || country.value==""){
+      
+      this.setState({ziperror:true,deviceerror:true,fnameerror:true,lnameerror:true,cityerror:true,stateerror:true,countryerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if
+      (this.state.device == ""){
+      this.setState({deviceerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(this.state.firstName==""){
+      
+      this.setState({fnameerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(this.state.lastName==""){
+      
+      this.setState({lnameerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(this.state.city==""){
+     
+      this.setState({cityerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(this.state.zip==""){
+      
+      this.setState({ziperror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(state.value==""){
+      
+      this.setState({cityerror:true});
+      this.setState({inprogress: false});
+
+    }
+    else if(country.value==""){
+      
+      this.setState({countryerror:true});
+      this.setState({inprogress: false});
+
+    }
+   
+    else{
+      const { title, content, device } = this.state
+        await this.props.createPost({
+          data: { 
+             title, 
+             content,
+             device 
+           },
+        })
+        this.props.history.replace('/thanks')
+        this.setState({inprogress: false});
+    }
+    
 
   }
 }

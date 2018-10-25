@@ -31,7 +31,16 @@ const QUERY = gql`
 const Posts = () => (
       <Query query={QUERY} >
         {({ data, error, loading }) => {
-          if (error) return '💩 Oops!';
+          if (error) return <React.Fragment>
+             <Grid.Row>
+              <Grid.Column computer={10} mobile={16} tablet={10}>
+                
+              </Grid.Column>
+              <Grid.Column computer={6} mobile={16} tablet={6}>
+                <Sidebar />
+              </Grid.Column>
+            </Grid.Row>
+            </React.Fragment>;
           if (loading) return <Grid.Row>
               <Grid.Column computer={16} mobile={16} tablet={16} style={{padding:'40px 0'}}>
                 <Loader active inline='centered' />

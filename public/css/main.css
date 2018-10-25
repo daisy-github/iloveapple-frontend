@@ -215,8 +215,15 @@ form .form_field {
     border-radius: 0px !important; }
   form .form_field.textarea {
     margin-top: 8px; }
+  form .form_field p {
+    color: red; }
 form .form_action {
   margin-top: 30px; }
+
+p.errortext {
+  margin: 8px 12px 0;
+  font-size: 0.75rem;
+  color: red; }
 
 .equal_width {
   display: flex; }

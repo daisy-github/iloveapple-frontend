@@ -4,7 +4,7 @@ import {
   Link,
 } from 'react-router-dom'
 import { Grid, Header, Button, Icon, Item, Label, List, Accordion } from 'semantic-ui-react'
-
+import SimpleList from "./SimpleList";
 class Sidebar extends Component {  
   state = { activeIndex: -1 }
 
@@ -21,45 +21,7 @@ class Sidebar extends Component {
       <Grid.Row className="sidebar">
         <Grid.Column className="list_block">
           <Header as='h3'  content='Categories' />
-          <Accordion>
-          <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             All
-            </Accordion.Title>  
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             
-              iPhone
-            </Accordion.Title>
-            
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             
-              iPad
-            </Accordion.Title>
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             
-              iPod Touch
-            </Accordion.Title>
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             
-              MacBook
-            </Accordion.Title>  
-               <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             
-              Mac Mini
-            </Accordion.Title> 
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             iMac
-            </Accordion.Title>
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             Apple TV
-            </Accordion.Title>   
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             Apple Watch
-            </Accordion.Title>   
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-             Other
-            </Accordion.Title> 
-                        
-          </Accordion>
+          <SimpleList />
 
         </Grid.Column> 
 

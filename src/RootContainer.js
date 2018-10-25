@@ -33,11 +33,11 @@ class RootContainer extends Component {
           <Transition visible={visible} animation='slide right' duration={400} >
             
                <Menu vertical className="mobile_nav">
-                <Menu.Item as={Link} to="/">
+                <Menu.Item as={Link} to="/" onClick={this.handleVisibility}>
                  Home
                 </Menu.Item>
-                <Menu.Item as={Link} to="/about">About</Menu.Item>
-                <Menu.Item as={Link} to="/create">Add Post</Menu.Item>
+                <Menu.Item as={Link} to="/about" onClick={this.handleVisibility}>About</Menu.Item>
+                <Menu.Item as={Link} to="/create" onClick={this.handleVisibility}>Add Post</Menu.Item>
               </Menu>
             
           </Transition>
