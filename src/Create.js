@@ -42,8 +42,14 @@ class Create extends Component {
 
   handleCountryChange = (event) => {
         const { name, value } = event.target;
+        this.setState({ country:value});
        this.fetchStatesList(name,value);
        
+  }
+
+  handleStateChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({ state:value});
   }
 
   fetchStatesList = async(name, value) => {
@@ -189,7 +195,7 @@ class Create extends Component {
                   {this.state.countryerror?<p className="errortext">Please select country</p>:""}
                 </div>
                 <div>
-                  <select name="state" id="state">
+                  <select name="state" onChange={this.handleStateChange} id="state">
                       <option value="">Select State</option>
                    {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
                       return(
@@ -340,7 +346,6 @@ class Create extends Component {
     e.preventDefault()
     var country = document.getElementById('country');
     var state = document.getElementById('state');
-    console.log( "kk",country.value );
     this.setState({inprogress: true});
      if(this.state.zip==""  &&this.state.city==""  &&this.state.lastName==""  &&this.state.firstName=="" && this.state.device==""|| state.value=="" || country.value==""){
       
@@ -392,12 +397,21 @@ class Create extends Component {
     }
    
     else{
-      const { title, content, device } = this.state
+      const { title, content, deviceType, device, firstName, lastName, email, phone, country, state, city,zip } = this.state
         await this.props.createPost({
           data: { 
              title, 
              content,
-             device 
+             deviceType,
+             device,
+             firstName,
+             lastName,
+             email,
+             phone,
+             country,
+             state,
+             city,
+             zip
            },
         })
         this.props.history.replace('/thanks')
