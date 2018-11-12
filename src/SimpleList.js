@@ -28,6 +28,12 @@ class SimpleList extends Component {
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
+                  <Link to="">iPhone</Link>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
                   <Link to="">iPad</Link>
                 </List.Content>
               </List.Item>

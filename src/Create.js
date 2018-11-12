@@ -12,12 +12,16 @@ class Create extends Component {
     device:'',
     firstName:'',
     lastName:'',
+    email:'',
+    phone:'',
     city:'',
     zip:'',
 
     deviceerror:false,
     fnameerror:false,
     lnameerror:false,
+    emailerror:false,
+    phoneerror:false,
     cityerror:false,
     ziperror:false,
     inprogress: false,
@@ -92,6 +96,18 @@ class Create extends Component {
 
             </div>
             <div className="full_width">
+              <select name="deviceType" onChange={e => this.setState({ deviceType: e.target.value })} id="country">
+                        <option value="">Select Device Type</option>
+                        <option value="0">iPhone</option>
+                        <option value="1">iPad</option>
+                        <option value="2">MacBook</option>
+                        <option value="3">iMac</option>
+                        <option value="4">Apple Watch</option>
+                     
+                  </select>
+                  {this.state.countryerror?<p className="errortext">Please select country</p>:""}
+            </div>
+            <div className="full_width">
               <TextField
                 id="outlined-dense"
                 label="Device"
@@ -129,6 +145,34 @@ class Create extends Component {
                   onChange={e => this.setState({ lastName: e.target.value, lnameerror: false })}
                   value={this.state.lastName}
                   helperText={this.state.lnameerror?"Please enter Last name":""}
+                />
+              </div>
+            </div>
+            <div className="equal_width">            
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="Email"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ email: e.target.value, emailerror: false})}
+                  value={this.state.email}
+                  helperText={this.state.emailerror?"Please enter Email":""}
+                />
+              </div>
+              <div>
+                <TextField
+                  id="outlined-dense"
+                  label="Phone"
+                  className="form_field"
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth="true"
+                  onChange={e => this.setState({ phone: e.target.value, phoneerror: false })}
+                  value={this.state.phone}
+                  helperText={this.state.phoneerror?"Please enter Phone Number":""}
                 />
               </div>
             </div>
