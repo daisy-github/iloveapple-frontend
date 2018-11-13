@@ -4,7 +4,8 @@ import { graphql,compose } from 'react-apollo';
 import  { gql } from 'apollo-boost';
 import { Grid, Container, Menu, Header, List, Transition, Image, Icon, Form, Select, Button  } from 'semantic-ui-react'
 import TextField from '@material-ui/core/TextField';
-
+const emailRgx = /(^.{4,8}^$|^.*@.*\..*$)/;
+const phoneno = /^\d{10}$/;
 class Create extends Component {
   state = {
     title: '',
@@ -16,6 +17,7 @@ class Create extends Component {
     phone:'',
     city:'',
     zip:'',
+    deviceType:'',
 
     deviceerror:false,
     fnameerror:false,
@@ -26,7 +28,8 @@ class Create extends Component {
     ziperror:false,
     inprogress: false,
     countryerror:false,
-    stateerror:false
+    stateerror:false,
+    devicetypeerror:false
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -102,7 +105,7 @@ class Create extends Component {
 
             </div>
             <div className="full_width">
-              <select name="deviceType" onChange={e => this.setState({ deviceType: e.target.value })} id="country">
+              <select name="deviceType" onChange={e => this.setState({ deviceType: e.target.value, devicetypeerror:false })} id="country">
                         <option value="">Select Device Type</option>
                         <option value="0">iPhone</option>
                         <option value="1">iPad</option>
@@ -111,7 +114,7 @@ class Create extends Component {
                         <option value="4">Apple Watch</option>
                      
                   </select>
-                  {this.state.countryerror?<p className="errortext">Please select country</p>:""}
+                  {this.state.devicetypeerror?<p className="errortext">Please choose device</p>:""}
             </div>
             <div className="full_width">
               <TextField
@@ -165,7 +168,7 @@ class Create extends Component {
                   fullWidth="true"
                   onChange={e => this.setState({ email: e.target.value, emailerror: false})}
                   value={this.state.email}
-                  helperText={this.state.emailerror?"Please enter Email":""}
+                  helperText={this.state.emailerror?"Please enter valid Email address":""}
                 />
               </div>
               <div>
@@ -176,9 +179,10 @@ class Create extends Component {
                   margin="dense"
                   variant="outlined"
                   fullWidth="true"
+                  type="number"
                   onChange={e => this.setState({ phone: e.target.value, phoneerror: false })}
                   value={this.state.phone}
-                  helperText={this.state.phoneerror?"Please enter Phone Number":""}
+                  helperText={this.state.phoneerror?"Please enter valid Phone Number":""}
                 />
               </div>
             </div>
@@ -347,55 +351,39 @@ class Create extends Component {
     var country = document.getElementById('country');
     var state = document.getElementById('state');
     this.setState({inprogress: true});
-     if(this.state.zip==""  &&this.state.city==""  &&this.state.lastName==""  &&this.state.firstName=="" && this.state.device==""|| state.value=="" || country.value==""){
-      
-      this.setState({ziperror:true,deviceerror:true,fnameerror:true,lnameerror:true,cityerror:true,stateerror:true,countryerror:true});
-      this.setState({inprogress: false});
-
+    console.log("country",country.options[country.selectedIndex].value,state.options[state.selectedIndex].value)
+     if(this.state.email==""&&this.state.phone==""&&this.state.deviceType==""&&this.state.zip==""  &&this.state.city==""  &&this.state.lastName==""  &&this.state.firstName=="" && this.state.device=="" &&  state.value==""&& country.value==""){
+      this.setState({emailerror:true,phoneerror:true,devicetypeerror:true,ziperror:true,deviceerror:true,fnameerror:true,lnameerror:true,cityerror:true,stateerror:true,countryerror:true,inprogress: false});
     }
     else if
       (this.state.device == ""){
-      this.setState({deviceerror:true});
-      this.setState({inprogress: false});
-
+      this.setState({deviceerror:true,inprogress: false});
     }
     else if(this.state.firstName==""){
-      
-      this.setState({fnameerror:true});
-      this.setState({inprogress: false});
-
+      this.setState({fnameerror:true,inprogress: false});
     }
     else if(this.state.lastName==""){
-      
-      this.setState({lnameerror:true});
-      this.setState({inprogress: false});
-
+      this.setState({lnameerror:true,inprogress: false});
+    }
+    else if (!(this.state.email).match(emailRgx)) {
+      this.setState({emailerror: true,inprogress: false});
+    }
+    else if (!(this.state.phone).match(phoneno)) {
+      this.setState({phoneerror: true,inprogress: false});
     }
     else if(this.state.city==""){
-     
-      this.setState({cityerror:true});
-      this.setState({inprogress: false});
-
+      this.setState({cityerror:true,inprogress: false});
     }
     else if(this.state.zip==""){
-      
-      this.setState({ziperror:true});
-      this.setState({inprogress: false});
-
+      this.setState({ziperror:true,inprogress: false});
     }
-    else if(state.value==""){
-      
-      this.setState({cityerror:true});
-      this.setState({inprogress: false});
-
+    
+    else if(country.options[country.selectedIndex].value==""){
+      this.setState({countryerror:true,inprogress: false});
     }
-    else if(country.value==""){
-      
-      this.setState({countryerror:true});
-      this.setState({inprogress: false});
-
+    else if(state.options[state.selectedIndex].value==""){
+      this.setState({stateerror:true,inprogress: false});
     }
-   
     else{
       const { title, content, deviceType, device, firstName, lastName, email, phone, country, state, city,zip } = this.state
         await this.props.createPost({
