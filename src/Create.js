@@ -107,11 +107,11 @@ class Create extends Component {
             <div className="full_width">
               <select name="deviceType" onChange={e => this.setState({ deviceType: e.target.value, devicetypeerror:false })} id="country">
                         <option value="">Select Device Type</option>
-                        <option value="0">iPhone</option>
-                        <option value="1">iPad</option>
-                        <option value="2">MacBook</option>
-                        <option value="3">iMac</option>
-                        <option value="4">Apple Watch</option>
+                        <option value="1">iPhone</option>
+                        <option value="2">iPad</option>
+                        <option value="3">MacBook</option>
+                        <option value="4">iMac</option>
+                        <option value="5">Apple Watch</option>
                      
                   </select>
                   {this.state.devicetypeerror?<p className="errortext">Please choose device</p>:""}

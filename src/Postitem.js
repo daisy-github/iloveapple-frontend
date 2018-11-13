@@ -13,7 +13,7 @@ class PostItem extends Component {
     return (
       <Item className="post_grid">                 
           <Item.Content>
-            <Item.Header as={Link} to="/">{this.props.post.title}</Item.Header>
+            <Item.Header>{this.props.post.title}</Item.Header>
             <Item.Meta>
               <List horizontal>
                 <List.Item>
@@ -27,6 +27,18 @@ class PostItem extends Component {
                 <List.Item>
                    <List.Icon name='folder outline' />
                   <List.Content verticalAlign='middle'>{this.props.post.device}</List.Content>
+                </List.Item>
+                <List.Item>
+                   <List.Icon name='folder outline' />
+                  <List.Content verticalAlign='middle'>{this.props.post.city}</List.Content>
+                </List.Item>
+                <List.Item>
+                   <List.Icon name='folder outline' />
+                  <List.Content verticalAlign='middle'>{this.props.post.email}</List.Content>
+                </List.Item>
+                <List.Item>
+                   <List.Icon name='folder outline' />
+                  <List.Content verticalAlign='middle'>{this.props.post.phone}</List.Content>
                 </List.Item>
                 {/*<List.Item>
                    <List.Icon name='comment outline' />

@@ -15,6 +15,12 @@ class SimpleList extends Component {
 
     this.setState({ activeIndex: newIndex })
   }
+
+
+  handleCategory = async(type) => {
+    console.log(type);
+  }
+
   render() {
     const { activeIndex } = this.state
     return (     
@@ -22,37 +28,37 @@ class SimpleList extends Component {
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="">All</Link>
+                  <Link to="" onClick={() => this.handleCategory('0')}>All</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="">iPhone</Link>
+                  <Link to="" onClick={() => this.handleCategory('1')}>iPhone</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="">iPad</Link>
+                  <Link to="" onClick={() => this.handleCategory('2')}>iPad</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="">MacBook</Link>
+                  <Link to="" onClick={() => this.handleCategory('3')}>MacBook</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="">iMac</Link>
+                  <Link to="" onClick={() => this.handleCategory('4')}>iMac</Link>
                 </List.Content>
               </List.Item>
 
               <List.Item>
                 <List.Icon name='angle right' />
-                <List.Content>
+                <List.Content onClick={() => this.handleCategory('5')}>
                   <Link to="">Apple Watch</Link>
                 </List.Content>
               </List.Item>
