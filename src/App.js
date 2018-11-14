@@ -1,15 +1,54 @@
-import React from 'react';
-import { Query } from 'react-apollo';
+import React, { Component } from 'react';
+import { Query,graphql,compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PostItem from "./Postitem";
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar';
+import { withRouter } from 'react-router-dom'
 import {
   Link,
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader} from 'semantic-ui-react'
+class App extends Component {
 
-const QUERY = gql`
-  query Posts{
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps !== this.props) {
+     
+      if (nextProps.fetchPosts.GetPosts != undefined) {
+         this.setState({posts : nextProps.fetchPosts.GetPosts});
+      }
+     
+    }
+  }
+  render() {
+     console.log('state data',this.state);
+    return (
+      <React.Fragment>
+             <Grid.Row>
+              <Grid.Column computer={10} mobile={16} tablet={10}>
+                <Item.Group divided className="wrapper">
+                  {this.state && this.state.posts != undefined 
+                    ? this.state.posts.length > 0
+                      ? this.state.posts.map(post => (
+                        <PostItem post={post}/>
+                      )) : "No posts found"
+                    : 
+                    <Loader active inline='centered' />}
+                </Item.Group>
+              </Grid.Column>
+              <Grid.Column computer={6} mobile={16} tablet={6}>
+                <Sidebar />
+              </Grid.Column>
+            </Grid.Row>
+      </React.Fragment>
+    )
+  }
+
+
+}
+
+
+const FETCH_POSTS = gql`
+  query Posts {
     GetPosts{
       _id
       title
@@ -25,48 +64,15 @@ const QUERY = gql`
       createdAt
       updatedAt
     }
-  }
-`;
+  }`
 
-const Posts = () => (
-      <Query query={QUERY} >
-        {({ data, error, loading }) => {
-          if (error) return '💩 Oops!';
-          if (loading) return <Grid.Row>
-              <Grid.Column computer={16} mobile={16} tablet={16} style={{padding:'40px 0'}}>
-                <Loader active inline='centered' />
-            </Grid.Column>
-          </Grid.Row>;
 
-          return (
-            <React.Fragment>
-             <Grid.Row>
-              <Grid.Column computer={10} mobile={16} tablet={10}>
-                <Item.Group divided className="wrapper">
-                  {data.GetPosts.map(post => (
-                    <PostItem post={post}/>
-                ))}
-                </Item.Group>
-              </Grid.Column>
-              <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar />
-              </Grid.Column>
-            </Grid.Row>
-            </React.Fragment>
-              
-            
-
-          );
-        }}
-      </Query>
-    
-
-      
-   
+const FetchPosts = compose(
   
-);
+  graphql(FETCH_POSTS, {
+    name: 'fetchPosts',
+  }),
+  
+)(App)
 
-
-const App = () => <Posts/>;
-
-export default App;
+export default withRouter(FetchPosts)
