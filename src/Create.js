@@ -4,6 +4,8 @@ import { graphql,compose } from 'react-apollo';
 import  { gql } from 'apollo-boost';
 import { Grid, Container, Menu, Header, List, Transition, Image, Icon, Form, Select, Button  } from 'semantic-ui-react'
 import TextField from '@material-ui/core/TextField';
+import LayoutWrapper from './LayoutWrapper';
+
 const emailRgx = /(^.{4,8}^$|^.*@.*\..*$)/;
 const phoneno = /^\d{10}$/;
 class Create extends Component {
@@ -453,4 +455,4 @@ const CreatePostWithMutation = compose(
   }),
 )(Create)
 
-export default withRouter(CreatePostWithMutation)
+export default LayoutWrapper(withRouter(CreatePostWithMutation))

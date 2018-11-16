@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, Header, Icon, Button } from 'semantic-ui-react'
 import {Link} from "react-router-dom";
+import LayoutWrapper from './LayoutWrapper';
+
 const Thankyou = () => (
   <Grid.Row className="wrapper thanks">
 	  <Grid.Column computer={2} mobile={16}></Grid.Column>
@@ -18,4 +20,4 @@ const Thankyou = () => (
 
 const Thanks = () => <Thankyou/>;
 
-export default Thanks;
+export default LayoutWrapper(Thanks)

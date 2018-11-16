@@ -4,10 +4,12 @@ import gql from 'graphql-tag';
 import PostItem from "./Postitem";
 import Sidebar from './Sidebar';
 import { withRouter } from 'react-router-dom'
+import LayoutWrapper from './LayoutWrapper';
+
 import {
   Link,
 } from 'react-router-dom'
-import { Grid, Icon, Item, Loader} from 'semantic-ui-react'
+import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
 class App extends Component {
 
   componentWillReceiveProps = (nextProps) => {
@@ -30,7 +32,7 @@ class App extends Component {
                     ? this.state.posts.length > 0
                       ? this.state.posts.map(post => (
                         <PostItem post={post}/>
-                      )) : "No posts found"
+                      )) : <div className="nopost"><Icon name="edit"/><p>No post found</p><Button as={Link} to="create" secondary>Add post</Button></div>
                     : 
                     <Loader active inline='centered' />}
                 </Item.Group>
@@ -75,4 +77,4 @@ const FetchPosts = compose(
   
 )(App)
 
-export default withRouter(FetchPosts)
+export default LayoutWrapper(withRouter(FetchPosts))

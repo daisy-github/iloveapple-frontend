@@ -18,7 +18,7 @@ class Sidebar extends Component {
   render() {
     const { activeIndex } = this.state
     return (
-      <Grid.Row className="sidebar">
+      <Grid.Row className="sidebar-right">
         <Grid.Column className="list_block">
           <Header as='h3'  content='Categories' />
           <SimpleList />
