@@ -1,89 +1,16 @@
-import React, { Component } from 'react';
-import { Query,graphql,compose } from 'react-apollo';
+import React from 'react';
+import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PostItem from "./Postitem";
-import Sidebar from './Sidebar';
-import { withRouter } from 'react-router-dom'
-import LayoutWrapper from './LayoutWrapper';
-
+import Sidebar from './Sidebar'
 import {
   Link,
 } from 'react-router-dom'
-import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
-class App extends Component {
-
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps !== this.props) {
-     
-      if (nextProps.fetchPosts.GetPostByCategory != undefined) {
-         this.setState({posts : nextProps.fetchPosts.GetPostByCategory});
-      }
-     
-    }
-  }
-  fetchPostsByCategory = (type) => {
-    this.props.fetchPosts.refetch({
-      skip:false,
-      type:type
-    })
-    .then(res => {
-      
-        console.log('res',res);
-      
-      
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
-  componentDidMount = async() => {
-    await this.props.fetchPosts.refetch({
-     
-      type:"1"
-    })
-    .then(res => {
-      
-        console.log('res',res);
-      
-      
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
-  render() {
-     console.log('state data',this.state);
-    return (
-      <React.Fragment>
-             <Grid.Row>
-              <Grid.Column computer={10} mobile={16} tablet={10}>
-                <Item.Group divided className="wrapper">
-                  {this.state && this.state.posts != undefined 
-                    ? this.state.posts.length > 0
-                      ? this.state.posts.map(post => (
-                        <PostItem post={post}/>
-                      )) : <div className="nopost"><Icon name="edit"/><p>No post found</p><Button as={Link} to="create" secondary>Add post</Button></div>
-                    : 
-                    <Loader active inline='centered' />}
-                </Item.Group>
-              </Grid.Column>
-              <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar fetchPostsByCategory={this.fetchPostsByCategory} />
-              </Grid.Column>
-            </Grid.Row>
-      </React.Fragment>
-    )
-  }
-
-
-}
-
-
-const FETCH_POSTS = gql`
-  query Posts($type:String!) {
-    GetPostByCategory(type:$type){
+import { Grid, Icon, Item} from 'semantic-ui-react'
+import LayoutWrapper from './LayoutWrapper';
+const QUERY = gql`
+  query Posts{
+    GetPosts{
       _id
       title
       content
@@ -98,20 +25,44 @@ const FETCH_POSTS = gql`
       createdAt
       updatedAt
     }
-  }`
+  }
+`;
 
+const Posts = () => (
+      <Query query={QUERY} >
+        {({ data, error, loading }) => {
+          if (error) return '💩 Oops!';
+          if (loading) return 'Loading...';
 
-const FetchPosts = compose(
+          return (
+            <React.Fragment>
+             <Grid.Row>
+              <Grid.Column computer={10} mobile={16} tablet={10}>
+                <Item.Group divided className="wrapper">
+                  {data.GetPosts.map(post => (
+                    <PostItem post={post}/>
+                ))}
+                </Item.Group>
+              </Grid.Column>
+              <Grid.Column computer={6} mobile={16} tablet={6}>
+                <Sidebar />
+              </Grid.Column>
+            </Grid.Row>
+            </React.Fragment>
+              
+            
+
+          );
+        }}
+      </Query>
+    
+
+      
+   
   
-  graphql(FETCH_POSTS, {
-    name: 'fetchPosts',
-    options: ownProps => ({
-      variables: {
-        type: "1",
-      },
-    }),
-  }),
-  
-)(App)
+);
 
-export default LayoutWrapper(withRouter(FetchPosts))
+
+const App = () => <Posts/>;
+
+export default LayoutWrapper(App)
