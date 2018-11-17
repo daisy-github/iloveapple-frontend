@@ -26,6 +26,31 @@ body{
 		font-size: 16px;
 	}
 }
+.nopost{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	flex-direction: column;
+	margin: 60px 0;
+	p{
+		margin: 25px 0;
+		font-style: italic;
+	}
+	i{
+		font-size: 35px;
+		color: rgba(34,36,38,.1);
+	}
+	a{
+		&.button{
+			background-color: $yellow !important;
+			color: $white !important;
+			&:hover{
+				background-color:$purple !important;
+				opacity: 0.9;
+			}
+		}
+	}
+}
 .wrapper{
 	padding: 50px 0 40px 0 !important;
 	&.thanks{
@@ -224,7 +249,7 @@ header{
 		}
 	}
 }
-.sidebar{
+.sidebar-right{
     margin: 50px 0 40px 0;
     padding-left: 10%;
     border-left: 1px solid #ebebeb;
@@ -376,4 +401,62 @@ header{
 			}
 		} 
 	} 
+}
+
+.main-side {
+	.sidebar{
+		padding-left: 0;
+	}
+    background: #000;
+	padding: 12px;
+	.lefts-align {
+		text-align: left;
+		float: left;
+	}
+	.rights-align {
+		text-align: right;
+		.account .account_name {
+			color: #fff;
+			span {
+				
+				font-size: 15px;
+				display: inline-block;
+				span {
+					font-size: 13px;
+				}
+			}
+		}
+		.account i.dropdown {
+			vertical-align: top;
+			margin-top: 10px !important;
+			color: #fff;
+		}
+	}
+
+}
+.main-wrapper{
+	.admin-logo{
+		color: rgb(255, 255, 255);
+    padding: 10px;
+    cursor: pointer;
+    font-size: 30px;
+	font-weight: bold;
+	vertical-align: middle;
+
+	}
+}
+.main-wrapper .sider.ui.visible.left.sidebar ~ .fixed, .main-wrapper .sider.ui.visible.left.sidebar ~ .pusher{
+	-webkit-transform: translate3d(13rem, 0, 0) !important;
+    transform: translate3d(13rem, 0, 0) !important;
+}
+.main-wrapper .sider.labeled.icon.menu .item {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-start;
+	line-height: 30px;
+	color: #000;
+	i.menuIcon {
+		margin-left: 0 !important;
+		margin-right: 10px !important;
+	}
 }
