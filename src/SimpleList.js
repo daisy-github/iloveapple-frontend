@@ -28,37 +28,37 @@ class SimpleList extends Component {
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.handleCategory('0')}>All</Link>
+                  <Link to="" onClick={() => this.props.fetchPostsByCategory('0')}>All</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.handleCategory('1')}>iPhone</Link>
+                  <Link to="" onClick={() => this.props.fetchPostsByCategory('1')}>iPhone</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.handleCategory('2')}>iPad</Link>
+                  <Link to="" onClick={() => this.props.fetchPostsByCategory('2')}>iPad</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.handleCategory('3')}>MacBook</Link>
+                  <Link to="" onClick={() => this.props.fetchPostsByCategory('3')}>MacBook</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.handleCategory('4')}>iMac</Link>
+                  <Link to="" onClick={() => this.props.fetchPostsByCategory('4')}>iMac</Link>
                 </List.Content>
               </List.Item>
 
               <List.Item>
                 <List.Icon name='angle right' />
-                <List.Content onClick={() => this.handleCategory('5')}>
+                <List.Content onClick={() => this.props.fetchPostsByCategory('5')}>
                   <Link to="">Apple Watch</Link>
                 </List.Content>
               </List.Item>

@@ -21,7 +21,7 @@ class Sidebar extends Component {
       <Grid.Row className="sidebar-right">
         <Grid.Column className="list_block">
           <Header as='h3'  content='Categories' />
-          <SimpleList />
+          <SimpleList fetchPostsByCategory={this.props.fetchPostsByCategory} />
 
         </Grid.Column> 
 
