@@ -315,5 +315,8 @@ p.errortext {
   .main-wrapper .sider.labeled.icon.menu .item i.menuIcon {
     margin-left: 0 !important;
     margin-right: 10px !important; }
+  .main-wrapper .sider.labeled.icon.menu .item.active {
+    background: rgba(167, 154, 154, 0.4);
+    color: rgba(0, 0, 0, 0.95) !important; }
 
 /*# sourceMappingURL=main.css.map */

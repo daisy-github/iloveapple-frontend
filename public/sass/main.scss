@@ -459,4 +459,8 @@ header{
 		margin-left: 0 !important;
 		margin-right: 10px !important;
 	}
+	&.active {
+		background: rgba(167, 154, 154, 0.4);
+		color: rgba(0,0,0,.95)!important;
+	}
 }

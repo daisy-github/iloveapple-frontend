@@ -1,12 +1,10 @@
 
 import React from "react";
-import { Grid, Container, Menu, Header, List, Transition, Image, Icon } from 'semantic-ui-react'
+import { Grid, Container, Menu, Header, Transition, Icon } from 'semantic-ui-react'
 import {
-  NavLink,
+  
   Link,
-  BrowserRouter as Router,
-  Route,
-  Switch,
+  
 } from 'react-router-dom'
 const layoutwrapper = Component => {
     class layoutwrapper extends React.Component{
@@ -18,7 +16,7 @@ const layoutwrapper = Component => {
             return(
                 <div>
                     <Grid>
-          <header className="banner_home" className={this.state.shownav? "banner_home child" : "banner_home"}>
+          <header className={this.state.shownav? "banner_home child" : "banner_home"}>
           
           {this.renderNavBar()}
           <Transition visible={visible} animation='slide right' duration={400} >

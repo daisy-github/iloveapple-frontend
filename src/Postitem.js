@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import {
-  Link,
-} from 'react-router-dom'
-import { Grid, Header, Button, Icon, Item, Label, List, Accordion } from 'semantic-ui-react'
+
+import { Item, List } from 'semantic-ui-react'
 import moment from 'moment';
-import ReadMoreReact from 'read-more-react';
+
 import ReadMoreAndLess from 'react-read-more-less';
 class PostItem extends Component {    
   render() {

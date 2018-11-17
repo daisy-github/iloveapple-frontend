@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
-import { StaticRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './Styles';
 
 class Side extends Component {
@@ -14,6 +14,8 @@ class Side extends Component {
   }
 
   render() {
+    console.log("this",this.props.props.location)
+    const path = this.props.props.location.pathname;
     return (
       <Sidebar
         as={Menu}
@@ -34,6 +36,7 @@ class Side extends Component {
             
             as={Link}
             to="/admin/posts"
+            className={path === "/admin" || path === "/admin/posts"?"active":""}
           >
             <Icon name="clipboard list" className="menuIcon"/>
             {

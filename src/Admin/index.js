@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './Styles';
 import Side from './sidebar';
-import { StaticRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Posts from './posts';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Dropdown } from 'semantic-ui-react';
-import {$} from "jquery";
+import { Sidebar, Segment, Button, Image, Icon, Dropdown } from 'semantic-ui-react';
+
 
 class Admin extends React.Component{
     constructor(props) {
@@ -46,6 +46,8 @@ class Admin extends React.Component{
       }
       
     render(){
+    console.log("this",this.props.location)
+
         const trigger = (
             <span className="account_name">
               <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar style={{verticalAlign:'top'}}/>
@@ -77,7 +79,7 @@ class Admin extends React.Component{
               <Icon name="sidebar" />
             </Button>
             
-            <Link to="/" className="admin-logo">i💖Apple</Link>
+            <Link to="/" className="admin-logo"><span>i💖Apple</span></Link>
             
           </div>
           <div className="rights-align">
@@ -85,10 +87,10 @@ class Admin extends React.Component{
           </div>
         </div>
         <Sidebar.Pushable as={Segment} style={style.sidebarCont}>
-          <Side toggelwidth={this.state.wid} handleSidebarHide={this.handleSidebarHide} visible={visible}/> 
+          <Side toggelwidth={this.state.wid} handleSidebarHide={this.handleSidebarHide} visible={visible} props={this.props}/> 
           <Sidebar.Pusher style={style.applCont} className={(this.state.wid) ? 'thin' : 'very thin'} >
             <Segment basic>
-              <Route path="/admin/post" component={Posts} />
+              <Route  path="/admin" exact component={Posts}/>
             
             </Segment>
           </Sidebar.Pusher>

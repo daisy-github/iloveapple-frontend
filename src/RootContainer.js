@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {
-  NavLink,
-  Link,
+  
   BrowserRouter as Router,
   Route,
   Switch,

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import {
-  Link,
-} from 'react-router-dom'
-import { Grid, Header, Button, Icon, Item, Label, List, Accordion } from 'semantic-ui-react'
+
+import {Accordion } from 'semantic-ui-react'
 
 class AccordionList extends Component {  
   state = { activeIndex: -1 }

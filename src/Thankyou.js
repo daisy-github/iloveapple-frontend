@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Icon, Button } from 'semantic-ui-react'
+import { Grid, Icon, Button } from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 import LayoutWrapper from './LayoutWrapper';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { graphql,compose } from 'react-apollo';
 import  { gql } from 'apollo-boost';
-import { Grid, Container, Menu, Header, List, Transition, Image, Icon, Form, Select, Button  } from 'semantic-ui-react'
+import { Grid, Header, Button  } from 'semantic-ui-react'
 import TextField from '@material-ui/core/TextField';
 import LayoutWrapper from './LayoutWrapper';
 
@@ -53,12 +53,12 @@ class Create extends Component {
   }
 
   handleStateChange = (event) => {
-        const { name, value } = event.target;
+        const { value } = event.target;
         this.setState({ state:value});
   }
 
   fetchStatesList = async(name, value) => {
-    if(name == "country"){
+    if(name === "country"){
       await this.props.fetchStates.refetch({
          skip:false,
          country:value
@@ -68,10 +68,7 @@ class Create extends Component {
 
   render() {
     let countries = this.state.countries;
-    const genderOptions = [
-      { key: 'm', text: 'Male', value: 'male' },
-      { key: 'f', text: 'Female', value: 'female' },
-    ]
+   
     return (
       <Grid.Row className="wrapper">
         <Grid.Column computer={2} mobile={16} tablet={16}></Grid.Column>
@@ -203,7 +200,7 @@ class Create extends Component {
                 <div>
                   <select name="state" onChange={this.handleStateChange} id="state">
                       <option value="">Select State</option>
-                   {this.state.statesArr != undefined && this.state.statesArr.states != undefined ? this.state.statesArr.states.map(function(state){
+                   {this.state.statesArr !== undefined && this.state.statesArr.states !== undefined ? this.state.statesArr.states.map(function(state){
                       return(
                         <option key={state} value={state}>{state}</option>
                       )
@@ -354,17 +351,17 @@ class Create extends Component {
     var state = document.getElementById('state');
     this.setState({inprogress: true});
     console.log("country",country.options[country.selectedIndex].value,state.options[state.selectedIndex].value)
-     if(this.state.email==""&&this.state.phone==""&&this.state.deviceType==""&&this.state.zip==""  &&this.state.city==""  &&this.state.lastName==""  &&this.state.firstName=="" && this.state.device=="" &&  state.value==""&& country.value==""){
+     if(this.state.email===""&&this.state.phone===""&&this.state.deviceType===""&&this.state.zip===""  &&this.state.city===""  &&this.state.lastName===""  &&this.state.firstName==="" && this.state.device==="" &&  state.value===""&& country.value===""){
       this.setState({emailerror:true,phoneerror:true,devicetypeerror:true,ziperror:true,deviceerror:true,fnameerror:true,lnameerror:true,cityerror:true,stateerror:true,countryerror:true,inprogress: false});
     }
     else if
-      (this.state.device == ""){
+      (this.state.device === ""){
       this.setState({deviceerror:true,inprogress: false});
     }
-    else if(this.state.firstName==""){
+    else if(this.state.firstName===""){
       this.setState({fnameerror:true,inprogress: false});
     }
-    else if(this.state.lastName==""){
+    else if(this.state.lastName===""){
       this.setState({lnameerror:true,inprogress: false});
     }
     else if (!(this.state.email).match(emailRgx)) {
@@ -373,17 +370,17 @@ class Create extends Component {
     else if (!(this.state.phone).match(phoneno)) {
       this.setState({phoneerror: true,inprogress: false});
     }
-    else if(this.state.city==""){
+    else if(this.state.city===""){
       this.setState({cityerror:true,inprogress: false});
     }
-    else if(this.state.zip==""){
+    else if(this.state.zip===""){
       this.setState({ziperror:true,inprogress: false});
     }
     
-    else if(country.options[country.selectedIndex].value==""){
+    else if(country.options[country.selectedIndex].value===""){
       this.setState({countryerror:true,inprogress: false});
     }
-    else if(state.options[state.selectedIndex].value==""){
+    else if(state.options[state.selectedIndex].value===""){
       this.setState({stateerror:true,inprogress: false});
     }
     else{
