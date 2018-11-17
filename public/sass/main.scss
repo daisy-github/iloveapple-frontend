@@ -407,7 +407,7 @@ header{
 	.sidebar{
 		padding-left: 0;
 	}
-    background: #000;
+    background: url(../bg.png),linear-gradient(to top right,#a85a21,#56280b);
 	padding: 12px;
 	.lefts-align {
 		text-align: left;
@@ -460,7 +460,21 @@ header{
 		margin-right: 10px !important;
 	}
 	&.active {
-		background: rgba(167, 154, 154, 0.4);
-		color: rgba(0,0,0,.95)!important;
+		// background: rgba(167, 154, 154, 0.4);
+		// color: rgba(0,0,0,.95)!important;
+		background:rgba(0, 0, 0, 0.29);
+		color: #fff !important;
+	}
+}
+.posts{
+	table{
+		td{
+			&.actions{
+				button{
+					padding: 5px 10px !important;
+					font-size: 12px;
+				}
+			}
+		}
 	}
 }

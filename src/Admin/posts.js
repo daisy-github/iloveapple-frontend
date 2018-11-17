@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Icon, Menu, Table, Button, Header} from 'semantic-ui-react'
 
 const Posts = () => (
-  <Grid.Row>
+  <Grid.Row className="posts">
 	  
 	  <Grid.Column computer={12} mobile={16}>
 		<Header size='large'>Posts</Header>
@@ -27,7 +27,7 @@ const Posts = () => (
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
 
-        <Table.Cell><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
+        <Table.Cell className="actions"><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
 				
       </Table.Row>
       <Table.Row>
@@ -37,7 +37,7 @@ const Posts = () => (
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
 				
-        <Table.Cell><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
+        <Table.Cell className="actions"><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>Cell</Table.Cell>
@@ -46,7 +46,7 @@ const Posts = () => (
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
 				
-        <Table.Cell><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
+        <Table.Cell className="actions"><Button positive>Accept</Button><Button negative>Reject</Button></Table.Cell>
       </Table.Row>
     </Table.Body>
 

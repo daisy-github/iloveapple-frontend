@@ -9,7 +9,7 @@ const styles = {
     background: "#e0e0e0e0",
   },
   iamsidebar: {
-    background: '#fff',
+    background: 'url(../bg.png),linear-gradient(to bottom right,#56280b,#a85a21)',
     color:'#000'
   },
   applCont: {

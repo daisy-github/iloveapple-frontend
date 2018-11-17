@@ -273,7 +273,7 @@ p.errortext {
     font-size: 35px;
     line-height: 45px; } }
 .main-side {
-  background: #000;
+  background: url(../bg.png), linear-gradient(to top right, #a85a21, #56280b);
   padding: 12px; }
   .main-side .sidebar {
     padding-left: 0; }
@@ -316,7 +316,11 @@ p.errortext {
     margin-left: 0 !important;
     margin-right: 10px !important; }
   .main-wrapper .sider.labeled.icon.menu .item.active {
-    background: rgba(167, 154, 154, 0.4);
-    color: rgba(0, 0, 0, 0.95) !important; }
+    background: rgba(0, 0, 0, 0.29);
+    color: #fff !important; }
+
+.posts table td.actions button {
+  padding: 5px 10px !important;
+  font-size: 12px; }
 
 /*# sourceMappingURL=main.css.map */
