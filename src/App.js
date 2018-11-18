@@ -19,8 +19,9 @@ class App extends Component {
 //   }
 
     render() {
+      let type = "1";
      return(
-      <Query query={QUERY} >
+      <Query query={QUERY} variables={{type}} >
         {({ data, error, loading }) => {
           if (error) return '💩 Oops!';
           if (loading) return <Grid.Row>
@@ -34,7 +35,7 @@ class App extends Component {
              <Grid.Row>
               <Grid.Column computer={10} mobile={16} tablet={10}>
                 <Item.Group divided className="wrapper">
-                  {data.GetPosts.map(post => (
+                  {data.GetPostByCategory.map(post => (
                     <PostItem post={post}/>
                 ))}
                 </Item.Group>
@@ -55,8 +56,8 @@ class App extends Component {
 }
 }
 const QUERY = gql`
-  query Posts{
-    GetPosts{
+  query Posts($type:String!){
+    GetPostByCategory(type:$type){
       _id
       title
       content
