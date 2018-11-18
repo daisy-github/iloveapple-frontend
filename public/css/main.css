@@ -293,6 +293,9 @@ p.errortext {
       vertical-align: top;
       margin-top: 10px !important;
       color: #fff; }
+    .main-side .rights-align .ui.dropdown .menu {
+      right: 0;
+      left: auto; }
 
 .main-wrapper .admin-logo {
   color: white;

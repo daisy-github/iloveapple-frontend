@@ -431,6 +431,10 @@ header{
 			margin-top: 10px !important;
 			color: #fff;
 		}
+		.ui.dropdown .menu {
+			right: 0;
+			left: auto;
+		}
 	}
 
 }
