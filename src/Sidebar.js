@@ -22,36 +22,7 @@ class Sidebar extends Component {
         <Grid.Column className="list_block">
           <Header as='h3'  content='Categories' />
           <SimpleList fetchPostsByCategory={this.props.fetchPostsByCategory} />
-
         </Grid.Column> 
-
-        {/*<Grid.Column className="list_block">
-          <Header as='h3'  content='Archive' />
-          <Accordion>
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-              <Icon name='angle right' />
-              Semantic UI
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 0}>
-              <List>
-                <List.Item>                        
-                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
-                </List.Item>
-              </List>
-            </Accordion.Content>
-            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
-              <Icon name='angle right' />
-              Semantic UI
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 1}>
-              <List>
-                <List.Item>                        
-                  <List.Content><Link to="/">Semantic UI</Link></List.Content>
-                </List.Item>
-              </List>
-            </Accordion.Content>                   
-          </Accordion>
-        </Grid.Column>    */}     
       </Grid.Row> 
     )
   }

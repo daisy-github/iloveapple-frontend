@@ -34,7 +34,7 @@ class SimpleList extends Component {
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('1')}>iPhone</Link>
+                  <Link to="javascript:void(0)" onClick={() => this.props.fetchPostsByCategory('1')}>iPhone</Link>
                 </List.Content>
               </List.Item>
               <List.Item>

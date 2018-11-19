@@ -1,28 +1,21 @@
-import React,{Component} from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import React, { Component } from 'react';
 import PostItem from "./Postitem";
 import Sidebar from './Sidebar'
 import {
   Link,
 } from 'react-router-dom'
-import { Grid, Icon, Item, Loader} from 'semantic-ui-react'
+import { Grid, Icon, Item, Loader, List,Header} from 'semantic-ui-react'
 import LayoutWrapper from './LayoutWrapper';
 class App extends Component {
-// fetchPostsByCategory = type => {
-//       <Query query={QUERY} variables={{type}} >
-//         {({ data, error, loading }) => {
-//              this.setState({data:data});
-//            }
-//           }
-//       </Query>
-//   }
+
 
     render() {
-      let type = "1";
+      
      return(
-      <Query query={QUERY} variables={{type}} >
-        {({ data, error, loading }) => {
+      <Query query={QUERY} variables={{type:"1"}} >
+        {({ data, error, loading,refetch }) => {
           if (error) return '💩 Oops!';
           if (loading) return <Grid.Row>
               <Grid.Column computer={16} mobile={16} tablet={16} style={{padding:'40px 0'}}>
@@ -41,7 +34,63 @@ class App extends Component {
                 </Item.Group>
               </Grid.Column>
               <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar fetchPostsByCategory={this.fetchPostsByCategory} />
+                <Grid.Row className="sidebar-right">
+                  <Grid.Column className="list_block">
+                    <Header as='h3'  content='Categories' />
+                    <List>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
+                  <Link to="" onClick={()=>{
+                  refetch({type:"0"})
+                }}>All</Link>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
+                  <Link to="" onClick={()=>{
+                  refetch({type:"1"})
+                }}>iPhone</Link>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
+                  <Link to="" onClick={()=>{
+                  refetch({type:"2"})
+                }}>iPad</Link>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
+                  <Link to="" onClick={()=>{
+                  refetch({type:"3"})
+                }}>MacBook</Link>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content>
+                  <Link to="" onClick={()=>{
+                  refetch({type:"4"})
+                }}>iMac</Link>
+                </List.Content>
+              </List.Item>
+
+              <List.Item>
+                <List.Icon name='angle right' />
+                <List.Content onClick={()=>{
+                  refetch({type:"5"})
+                }}>
+                  <Link to="">Apple Watch</Link>
+                </List.Content>
+              </List.Item>
+              
+            </List>  
+                  </Grid.Column> 
+                </Grid.Row> 
               </Grid.Column>
             </Grid.Row>
             </React.Fragment>
