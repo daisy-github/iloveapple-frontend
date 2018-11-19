@@ -11,16 +11,47 @@ import {
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
 class App extends Component {
-
+  constructor(){
+    super();
+    this.state={
+      cat:"1"
+    }
+  }
   componentWillReceiveProps = (nextProps) => {
+    console.log('=====nextProps=====',nextProps);
     if (nextProps !== this.props) {
-     
-      if (nextProps.fetchPosts.GetPosts != undefined) {
-         this.setState({posts : nextProps.fetchPosts.GetPosts});
+      if (nextProps.fetchPosts.GetPostByCategory != undefined) {
+         this.setState({posts : nextProps.fetchPosts.GetPostByCategory});
       }
      
     }
   }
+  componentDidMount = () => {
+    console.log('category',this.state.cat);
+     this.props.fetchPosts.refetch({
+      skip: false,
+      type:"1"
+    })
+    .then(res => {
+       console.log('resposne',res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  fetchPostsByCategory = (type) => {
+     this.props.fetchPosts.refetch({
+      type: type
+    })
+    .then(res => {
+       console.log('resposne2',res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   render() {
      console.log('state data',this.state);
     return (
@@ -38,7 +69,7 @@ class App extends Component {
                 </Item.Group>
               </Grid.Column>
               <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar />
+                <Sidebar fetchPostsByCategory={this.fetchPostsByCategory} />
               </Grid.Column>
             </Grid.Row>
       </React.Fragment>
@@ -50,8 +81,8 @@ class App extends Component {
 
 
 const FETCH_POSTS = gql`
-  query Posts {
-    GetPosts{
+  query Posts($type:String!){
+    GetPostByCategory(type:$type){
       _id
       title
       content
@@ -73,6 +104,11 @@ const FetchPosts = compose(
   
   graphql(FETCH_POSTS, {
     name: 'fetchPosts',
+    options: ownProps => ({
+      variables: {
+        type: "1"
+      },
+    }),
   }),
   
 )(App)

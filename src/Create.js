@@ -47,6 +47,18 @@ class Create extends Component {
     }
   }
 
+  componentDidMount = () => {
+     this.props.fetchCountires.refetch({
+      skip: false,
+    })
+    .then(res => {
+       console.log('resposne',res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   handleCountryChange = (event) => {
         const { name, value } = event.target;
         this.setState({ country:value});
