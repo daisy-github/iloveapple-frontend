@@ -22,21 +22,25 @@ class PostItem extends Component {
                    <List.Icon name='calendar alternate' />
                   <List.Content verticalAlign='middle'>{createdAt}</List.Content>
                 </List.Item>
-                <List.Item>
-                   <List.Icon name='folder outline' />
+                <List.Item className="doubleiconlist">
+                  <i className="doubleIcon">
+                   <List.Icon name='desktop' />
+                   <List.Icon name="tablet"/>
+                   <List.Icon name='mobile' />
+                   </i>
                   <List.Content verticalAlign='middle'>{this.props.post.device}</List.Content>
                 </List.Item>
                 <List.Item>
-                   <List.Icon name='folder outline' />
+                   <List.Icon name='map marker alternate' />
                   <List.Content verticalAlign='middle'>{this.props.post.city}</List.Content>
                 </List.Item>
                 <List.Item>
-                   <List.Icon name='folder outline' />
+                   <List.Icon name='mail' />
                   <List.Content verticalAlign='middle'>{this.props.post.email}</List.Content>
                 </List.Item>
                 <List.Item>
-                   <List.Icon name='folder outline' />
-                  <List.Content verticalAlign='middle'>{this.props.post.phone}</List.Content>
+                   <List.Icon name='phone' />
+                  <List.Content verticalAlign='middle'>999-999-9999</List.Content>
                 </List.Item>
                 {/*<List.Item>
                    <List.Icon name='comment outline' />

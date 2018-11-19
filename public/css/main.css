@@ -16,6 +16,40 @@ body {
     color: #8c9597;
     font-size: 16px; }
 
+.relative {
+  position: relative; }
+  .relative .form_field input[type="text"], .relative .form_field input[type="number"] {
+    padding-right: 65px !important; }
+  .relative.first .accessibilty {
+    right: 13px; }
+  .relative .accessibilty {
+    position: absolute;
+    right: 5px;
+    top: 44%;
+    transform: translate(0%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .relative .accessibilty label {
+      font-size: 11px; }
+
+.doubleiconlist .doubleIcon {
+  position: relative;
+  display: inline-block; }
+  .doubleiconlist .doubleIcon i:last-child {
+    right: 0px;
+    top: 6px;
+    top: 5px;
+    position: absolute;
+    font-size: 10px !important; }
+  .doubleiconlist .doubleIcon i:nth-child(2) {
+    left: -8px;
+    top: 4px;
+    position: absolute; }
+.doubleiconlist .content {
+  display: inline-block; }
+
 .nopost {
   display: flex;
   align-items: center;
@@ -154,6 +188,10 @@ header {
 .post_grid {
   margin-bottom: 100px !important;
   border-top: 0px !important; }
+  .post_grid .ui.horizontal.list > .item {
+    margin-left: 0px !important;
+    padding-right: 1em;
+    margin-right: 0 !important; }
   .post_grid .content a.header {
     margin-bottom: 10px;
     line-height: 1.4;
