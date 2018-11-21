@@ -9,35 +9,18 @@ class Post extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps !== this.props) {
-      if (nextProps.fetchPosts.GetPosts != undefined) {
-         this.setState({posts : nextProps.fetchPosts.GetPosts});
+      if (nextProps.fetchPosts.GetVerifiedPosts != undefined) {
+         this.setState({posts : nextProps.fetchPosts.GetVerifiedPosts});
       }
      
     }
   }
   acceptPost = async(id) => {
+    console.log('category',id);
     this.setState({ isAttempting: true});
     await this.props.verifyPost({
       id:id,
-      status:"true",
-      reason:""
-    })
-      .then((res) => {
-        if (res.data && res.data) {
-          console.log('=====res data===',res.data);
-        }
-      })
-      .catch((err) => {
-         console.log('=====res error===',err);
-        
-      });
-      this.setState({ isAttempting: false});
-  }
-  rejectPost = async(id) => {
-    this.setState({ isAttempting: true});
-    await this.props.rejectPost({
-      id:id,
-      status:"false",
+      status:true,
       reason:""
     })
       .then((res) => {
@@ -68,7 +51,7 @@ class Post extends Component {
         <Table.HeaderCell>Email Id</Table.HeaderCell>
         <Table.HeaderCell>Phone no.</Table.HeaderCell>
         <Table.HeaderCell>Content</Table.HeaderCell>
-        <Table.HeaderCell>Actions</Table.HeaderCell>
+        
 
       </Table.Row>
     </Table.Header>
@@ -85,10 +68,10 @@ class Post extends Component {
         <Table.Cell>{post.city}</Table.Cell>
         <Table.Cell>{post.content}</Table.Cell>
 
-        <Table.Cell className="actions"><Button positive onClick={()=>this.acceptPost(post._id)}>Accept</Button><Button negative onClick={()=>this.rejectPost(post._id)}>Reject</Button></Table.Cell>
+        
         
       </Table.Row>
-                      )) : <div className="nopost"><p>No posts found</p></div>
+                      )) : <div className="nopost" ><p>No verified posts found</p></div>
                     : 
                     <Loader active inline='centered' />}
       
@@ -122,7 +105,7 @@ class Post extends Component {
 
 const FETCH_POSTS = gql`
   query Posts {
-    GetPosts{
+    GetVerifiedPosts{
       _id
       title
       content
@@ -142,27 +125,12 @@ const FETCH_POSTS = gql`
 const VERIFY_POST = gql`
   mutation verifyPost($id:String!,$status:String!,$reason:String!) {
     VerifyPost(id:$id,status:$status,reason:$reason)
-  }`
-const REJECT_POST = gql`
-  mutation rejectPost($id:String!,$status:String!,$reason:String!) {
-    RejectPost(id:$id,status:$status,reason:$reason)
   }` 
 const FetchPosts = compose(
   graphql(VERIFY_POST, {
     props({ mutate }) {
       return {
         verifyPost(vars) {
-          return mutate({
-            variables: vars,
-          });
-        },
-      };
-    },
- }),
-  graphql(REJECT_POST, {
-    props({ mutate }) {
-      return {
-        rejectPost(vars) {
           return mutate({
             variables: vars,
           });

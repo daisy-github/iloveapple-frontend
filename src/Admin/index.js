@@ -3,6 +3,8 @@ import style from './Styles';
 import Side from './sidebar';
 import { Route, Link } from 'react-router-dom';
 import Posts from './posts';
+import Verified from './verified';
+import Rejected from './rejected';
 import { Sidebar, Segment, Button, Image, Icon, Dropdown } from 'semantic-ui-react';
 
 
@@ -91,7 +93,9 @@ class Admin extends React.Component{
           <Sidebar.Pusher style={style.applCont} className={(this.state.wid) ? 'thin' : 'very thin'} >
             <Segment basic>
               <Route  path="/admin" exact component={Posts}/>
-            
+              <Route  path="/admin/posts"  component={Posts}/>
+              <Route  path="/admin/verified"  component={Verified}/>
+              <Route  path="/admin/rejected"  component={Rejected}/>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

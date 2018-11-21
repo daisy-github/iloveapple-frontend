@@ -12,7 +12,7 @@ import About from './About'
 import Post from './Post'
 import Thankyou from './Thankyou'
 import Admin from './Admin';
-
+import device from './device';
 class RootContainer extends Component {
   
   render() {
@@ -28,6 +28,7 @@ class RootContainer extends Component {
               <Route  path="/post/:id" component={Post} />
               <Route  path="/thanks" component={Thankyou} />
               <Route  path="/admin" component={Admin} />
+              <Route  path="/device/:type" component={device} />
             </Switch>           
         </Fragment>
       </Router>

@@ -41,10 +41,35 @@ class Side extends Component {
             <Icon name="clipboard list" className="menuIcon"/>
             {
               this.props.toggelwidth &&
-                'Posts'
+                'Pending'
             }
           </Menu.Item>
-          
+          <Menu.Item
+            name="/admin/verified"
+            
+            as={Link}
+            to="/admin/verified"
+            className={path === "/admin/verified"?"active":""}
+          >
+            <Icon name="clipboard list" className="menuIcon"/>
+            {
+              this.props.toggelwidth &&
+                'Verified'
+            }
+          </Menu.Item>
+          <Menu.Item
+            name="/admin/rejected"
+            
+            as={Link}
+            to="/admin/rejected"
+            className={path === "/admin/rejected"?"active":""}
+          >
+            <Icon name="clipboard list" className="menuIcon"/>
+            {
+              this.props.toggelwidth &&
+                'Rejected'
+            }
+          </Menu.Item>
           
         </div>
       </Sidebar>

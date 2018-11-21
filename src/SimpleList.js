@@ -28,38 +28,38 @@ class SimpleList extends Component {
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('0')}>All</Link>
+                  <Link to="/">All</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('1')}>iPhone</Link>
+                  <Link to="/device/1">iPhone</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('2')}>iPad</Link>
+                  <Link to="/device/2">iPad</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('3')}>MacBook</Link>
+                  <Link to="/device/3" >MacBook</Link>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='angle right' />
                 <List.Content>
-                  <Link to="" onClick={() => this.props.fetchPostsByCategory('4')}>iMac</Link>
+                  <Link to="/device/4">iMac</Link>
                 </List.Content>
               </List.Item>
 
               <List.Item>
                 <List.Icon name='angle right' />
-                <List.Content onClick={() => this.props.fetchPostsByCategory('5')}>
-                  <Link to="">Apple Watch</Link>
+                <List.Content>
+                  <Link to="/device/5">Apple Watch</Link>
                 </List.Content>
               </List.Item>
               
