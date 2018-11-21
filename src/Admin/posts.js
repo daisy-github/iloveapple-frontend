@@ -24,11 +24,11 @@ class Post extends Component {
     })
       .then((res) => {
         if (res.data && res.data) {
-          console.log('=====res data===',res.data);
+          this.setState({posts:res.data.VerifyPost})
         }
       })
       .catch((err) => {
-         console.log('=====res error===',err);
+         console.log('error',err);
         
       });
       this.setState({ isAttempting: false});
@@ -42,11 +42,11 @@ class Post extends Component {
     })
       .then((res) => {
         if (res.data && res.data) {
-          console.log('=====res data===',res.data);
+          this.setState({posts:res.data.RejectPost})
         }
       })
       .catch((err) => {
-         console.log('=====res error===',err);
+         console.log('error',err);
         
       });
       this.setState({ isAttempting: false});
@@ -141,11 +141,39 @@ const FETCH_POSTS = gql`
 
 const VERIFY_POST = gql`
   mutation verifyPost($id:String!,$status:String!,$reason:String!) {
-    VerifyPost(id:$id,status:$status,reason:$reason)
+    VerifyPost(id:$id,status:$status,reason:$reason){
+      _id
+      title
+      content
+      device
+      email
+      firstName
+      lastName
+      country
+      state
+      city
+      zip
+      createdAt
+      updatedAt
+    }
   }`
 const REJECT_POST = gql`
   mutation rejectPost($id:String!,$status:String!,$reason:String!) {
-    RejectPost(id:$id,status:$status,reason:$reason)
+    RejectPost(id:$id,status:$status,reason:$reason){
+      _id
+      title
+      content
+      device
+      email
+      firstName
+      lastName
+      country
+      state
+      city
+      zip
+      createdAt
+      updatedAt
+    }
   }` 
 const FetchPosts = compose(
   graphql(VERIFY_POST, {

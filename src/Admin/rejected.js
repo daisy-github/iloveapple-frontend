@@ -25,11 +25,11 @@ class Post extends Component {
     })
       .then((res) => {
         if (res.data && res.data) {
-          console.log('=====res data===',res.data);
+          this.setState({posts:res.data.VerifyRejected})
         }
       })
       .catch((err) => {
-         console.log('=====res error===',err);
+         console.log('error',err);
         
       });
       this.setState({ isAttempting: false});
@@ -124,7 +124,21 @@ const FETCH_POSTS = gql`
 
 const VERIFY_POST = gql`
   mutation verifyPost($id:String!,$status:String!,$reason:String!) {
-    VerifyPost(id:$id,status:$status,reason:$reason)
+    VerifyRejected(id:$id,status:$status,reason:$reason){
+      _id
+      title
+      content
+      device
+      email
+      firstName
+      lastName
+      country
+      state
+      city
+      zip
+      createdAt
+      updatedAt
+    }
   }` 
 const FetchPosts = compose(
   graphql(VERIFY_POST, {
