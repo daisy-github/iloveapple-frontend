@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box; }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -10,19 +10,37 @@ input[type=number]::-webkit-outer-spin-button {
 
 body {
   font-family: "Lato", sans-serif; }
-  body h1, body h2, body h3, body h4, body h5, body h6 {
+  body h1,
+  body h2,
+  body h3,
+  body h4,
+  body h5,
+  body h6 {
     font-family: "Poppins", sans-serif !important; }
   body p {
     color: #8c9597;
     font-size: 16px; }
 
+.message-div {
+  top: 5px !important; }
+  .message-div.success > div {
+    background-color: green; }
+  .message-div.error > div {
+    background-color: #db2828; }
+  .message-div .close-icon {
+    padding: 10px;
+    background: transparent !important; }
+    .message-div .close-icon i {
+      font-size: 15px !important; }
+
 .relative {
   position: relative; }
-  .relative .form_field input[type="text"], .relative .form_field input[type="number"] {
+  .relative .form_field input[type="text"],
+  .relative .form_field input[type="number"] {
     padding-right: 65px !important; }
-  .relative.first .accessibilty {
+  .relative.first .accessibility {
     right: 13px; }
-  .relative .accessibilty {
+  .relative .accessibility {
     position: absolute;
     right: 5px;
     top: 44%;
@@ -31,8 +49,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center; }
-    .relative .accessibilty label {
+    .relative .accessibility label {
       font-size: 11px; }
+    .relative .accessibility.error {
+      top: 35%; }
 
 .doubleiconlist .doubleIcon {
   position: relative;
@@ -186,21 +206,18 @@ header {
         margin-top: 10px; }
 
 .post_grid {
-  margin-bottom: 100px !important;
+  margin-bottom: 40px !important;
   border-top: 0px !important; }
   .post_grid .ui.horizontal.list > .item {
     margin-left: 0px !important;
     padding-right: 1em;
     margin-right: 0 !important; }
-  .post_grid .content a.header {
+  .post_grid .content .header {
     margin-bottom: 10px;
     line-height: 1.4;
     font-weight: 700;
     font-size: 25px;
     text-transform: uppercase; }
-    .post_grid .content a.header:hover {
-      text-decoration: none;
-      color: #f1d204 !important; }
   .post_grid .content .meta .list.horizontal i {
     font-size: 14px;
     line-height: 1;
@@ -287,9 +304,9 @@ p.errortext {
   .equal_width > div {
     width: 50%; }
     .equal_width > div:first-child {
-      padding-right: .5em; }
+      padding-right: 0.5em; }
     .equal_width > div:last-child {
-      padding-left: .5em; }
+      padding-left: 0.5em; }
 
 @media screen and (max-width: 991px) {
   header .logo {
@@ -348,20 +365,23 @@ p.errortext {
   flex-direction: row !important;
   justify-content: flex-start;
   line-height: 30px;
-  color: #000; }
+  color: #fff; }
   .main-wrapper .sider.labeled.icon.menu .item i.menuIcon {
     margin-left: 0 !important;
     margin-right: 10px !important; }
   .main-wrapper .sider.labeled.icon.menu .item.active {
     background: rgba(0, 0, 0, 0.29);
     color: #fff !important; }
-.main-wrapper .sider.ui.visible.left.sidebar ~ .fixed, .main-wrapper .sider.ui.visible.left.sidebar ~ .pusher {
+.main-wrapper .sider.ui.visible.left.sidebar ~ .fixed,
+.main-wrapper .sider.ui.visible.left.sidebar ~ .pusher {
   -webkit-transform: translate3d(13rem, 0, 0) !important;
   transform: translate3d(13rem, 0, 0) !important; }
-.main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .fixed, .main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .pusher {
+.main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .fixed,
+.main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .pusher {
   -webkit-transform: translate3d(60px, 0, 0) !important;
   transform: translate3d(60px, 0, 0) !important; }
-  .main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .fixed.thin.very, .main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .pusher.thin.very {
+  .main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .fixed.thin.very,
+  .main-wrapper .sider.ui.visible[class*="very thin"].left.sidebar ~ .pusher.thin.very {
     width: calc(100% - 60px) !important; }
 
 .posts table td.actions button {
