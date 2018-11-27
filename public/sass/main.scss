@@ -211,6 +211,20 @@ body {
   }
 }
 header {
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 15px;
+    left: 0;
+    background-image: linear-gradient(
+      to bottom right,
+      rgba(165, 103, 63, 0.86),
+      #a5673f
+    );
+    opacity: 0.6;
+  }
   .hidden.transition {
     display: none !important;
   }
@@ -233,8 +247,16 @@ header {
   }
   color: $white;
   &.banner_home {
-    background-image: url(https://wp-themes.com/wp-content/themes/illdy/layout/images/blog/blog-header.png);
+    //background-image: url(https://wp-themes.com/wp-content/themes/illdy/layout/images/blog/blog-header.png);
+    background: url(../banner.jpg),
+      linear-gradient(to top right, #a85a21, #56280b);
     background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+
+    background-attachment: fixed;
+    min-height: 100vh;
   }
   .logo {
     font-size: 60px;
@@ -242,6 +264,7 @@ header {
     font-family: inherit;
     line-height: 75px;
     font-weight: 700;
+    text-shadow: 5px 5px 15px #957b7e;
   }
   .navigation {
     &.ui.menu {
@@ -262,12 +285,15 @@ header {
     }
   }
   .banner_text {
-    padding: 130px 0;
+    padding: 180px 0;
     .ui.header {
       color: $white;
       font-size: 65px;
       line-height: 70px;
       font-weight: 700;
+      text-shadow: 5px 5px 15px #957b7e;
+      position: relative;
+      z-index: 99;
       .sub.header {
         color: $white;
         font-size: 16px;

@@ -160,6 +160,15 @@ header {
   -moz-background-size: cover;
   -o-background-size: cover;
   color: #fff; }
+  header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 15px;
+    left: 0;
+    background-image: linear-gradient(to bottom right, rgba(165, 103, 63, 0.86), #a5673f);
+    opacity: 0.6; }
   header .hidden.transition {
     display: none !important; }
   header .header_row {
@@ -173,14 +182,20 @@ header {
     -o-transition: background-size 4s ease-in;
     -webkit-transition: background-size 4s ease-in; }
   header.banner_home {
-    background-image: url(https://wp-themes.com/wp-content/themes/illdy/layout/images/blog/blog-header.png);
-    background-attachment: fixed; }
+    background: url(../banner.jpg), linear-gradient(to top right, #a85a21, #56280b);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    min-height: 100vh; }
   header .logo {
     font-size: 60px;
     color: #fff;
     font-family: inherit;
     line-height: 75px;
-    font-weight: 700; }
+    font-weight: 700;
+    text-shadow: 5px 5px 15px #957b7e; }
   header .navigation.ui.menu a.item {
     font-weight: 700;
     color: #fff;
@@ -193,13 +208,16 @@ header {
     header .navigation.ui.menu a.item.button_mobile {
       display: none; }
   header .banner_text {
-    padding: 130px 0;
+    padding: 180px 0;
     font-family: "Poppins", sans-serif; }
     header .banner_text .ui.header {
       color: #fff;
       font-size: 65px;
       line-height: 70px;
-      font-weight: 700; }
+      font-weight: 700;
+      text-shadow: 5px 5px 15px #957b7e;
+      position: relative;
+      z-index: 99; }
       header .banner_text .ui.header .sub.header {
         color: #fff;
         font-size: 16px;
