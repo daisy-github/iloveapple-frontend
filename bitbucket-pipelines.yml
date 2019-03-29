@@ -1,0 +1,14 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:6.9.4
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script: 
+        - git push https://heroku:f96707f5-6cde-4d80-bbc4-86018aa43c29@git.heroku.com/iloveapple-frontend.git HEAD
