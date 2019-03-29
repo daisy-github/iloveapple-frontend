@@ -8,13 +8,13 @@ import {
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader, List,Header} from 'semantic-ui-react'
 import LayoutWrapper from './LayoutWrapper';
-class App extends Component {
 
 
-    render() {
-      
-     return(
-      <Query query={QUERY} variables={{type:"1"}} >
+    const App = type => {
+       type = "1";
+  
+    return(
+      <Query query={QUERY} variables={{type}} >
         {({ data, error, loading,refetch }) => {
           if (error) return '💩 Oops!';
           if (loading) return <Grid.Row>
@@ -100,10 +100,8 @@ class App extends Component {
           );
         }}
       </Query>
-    
-  )
-}
-}
+    )
+ }
 const QUERY = gql`
   query Posts($type:String!){
     GetPostByCategory(type:$type){
