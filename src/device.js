@@ -11,28 +11,50 @@ import {
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
 class App extends Component {
-  
+ 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps !== this.props) {
-      if (nextProps.fetchPosts.GetVerifiedPosts != undefined) {
-         this.setState({posts : nextProps.fetchPosts.GetVerifiedPosts});
-      }
-     
-    }
-  }
-  componentDidMount = () => {
-     this.props.fetchPosts.refetch({skip:false})
+      // if (nextProps.fetchPosts.GetPostByCategory != undefined) {
+      //    this.setState({posts : nextProps.fetchPosts.GetPostByCategory});
+      // }
+
+      if (nextProps.location && nextProps.location.pathname) {
+      const device = nextProps.location.pathname.split('/')[2];
+     this.props.fetchPosts.refetch({
+      skip: false,
+      type:device
+    })
     .then(res => {
-       //console.log('resposne',res);
+      if (res.data && res.data.GetPostByCategory != undefined) {
+       this.setState({posts : res.data.GetPostByCategory});
+      }
     })
     .catch(err => {
       console.log(err);
     })
+   }
+     
+    }
+  }
+  componentDidMount = () => {
+    if (this.props.location && this.props.location.pathname) {
+      const device = this.props.location.pathname.split('/')[2];
+     this.props.fetchPosts.refetch({
+      skip: false,
+      type:device
+    })
+    .then(res => {
+       console.log('resposne did mount',res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+   }
   }
 
   fetchPostsByCategory = (type) => {
      this.props.history.push({
-       pathname: `/device/${type}`,
+       pathname: `/${type}`,
       })
   }
 
@@ -52,7 +74,7 @@ class App extends Component {
                 </Item.Group>
               </Grid.Column>
               <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar/>
+                <Sidebar fetchPostsByCategory={this.fetchPostsByCategory} />
               </Grid.Column>
             </Grid.Row>
       </React.Fragment>
@@ -64,8 +86,8 @@ class App extends Component {
 
 
 const FETCH_POSTS = gql`
-  query Posts{
-    GetVerifiedPosts{
+  query Posts($type:String!,$skip: Boolean!){
+    GetPostByCategory(type:$type)@skip(if: $skip){
       _id
       title
       content
@@ -87,7 +109,12 @@ const FetchPosts = compose(
   
   graphql(FETCH_POSTS, {
     name: 'fetchPosts',
-   
+    options: ownProps => ({
+      variables: {
+        type: ownProps.type,
+        skip:true
+      },
+    }),
   }),
   
 )(App)

@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { ApolloProvider } from 'react-apollo';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from "react-apollo";
+import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 
-import './index.css';
-import RootContainer from './RootContainer';
+import "./index.css";
+import RootContainer from "./RootContainer";
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://localhost:3080/graphql' }),
+  link: new HttpLink({ uri: "http://localhost:3080/graphql" }),
   cache: new InMemoryCache()
 });
 
@@ -17,4 +17,4 @@ const AppWithProvider = () => (
   </ApolloProvider>
 );
 
-ReactDOM.render(<AppWithProvider />, document.getElementById('root'));
+ReactDOM.render(<AppWithProvider />, document.getElementById("root"));
