@@ -10,113 +10,58 @@ import {
   Link,
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
-class App extends Component {
- 
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps !== this.props) {
-      // if (nextProps.fetchPosts.GetPostByCategory != undefined) {
-      //    this.setState({posts : nextProps.fetchPosts.GetPostByCategory});
-      // }
-
-      if (nextProps.location && nextProps.location.pathname) {
-      const device = nextProps.location.pathname.split('/')[2];
-     this.props.fetchPosts.refetch({
-      skip: false,
-      type:device
-    })
-    .then(res => {
-      if (res.data && res.data.GetPostByCategory != undefined) {
-       this.setState({posts : res.data.GetPostByCategory});
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    })
-   }
-     
-    }
+const Device = ({ data: { loading, error, GetPostByCategory }}) => {
+  if (loading) {
+    return <p>Loading...</p>;
   }
-  componentDidMount = () => {
-    if (this.props.location && this.props.location.pathname) {
-      const device = this.props.location.pathname.split('/')[2];
-     this.props.fetchPosts.refetch({
-      skip: false,
-      type:device
-    })
-    .then(res => {
-       console.log('resposne did mount',res);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-   }
+  if (error) {
+    return <p>{error.message}</p>;
   }
 
-  fetchPostsByCategory = (type) => {
-     this.props.history.push({
-       pathname: `/${type}`,
-      })
-  }
-
-  render() {
-    return (
-      <React.Fragment>
+  return (
+   <React.Fragment>
              <Grid.Row>
               <Grid.Column computer={10} mobile={16} tablet={10}>
                 <Item.Group divided className="wrapper">
-                  {this.state && this.state.posts != undefined 
-                    ? this.state.posts.length > 0
-                      ? this.state.posts.map(post => (
-                        <PostItem post={post}/>
+                  {GetPostByCategory && GetPostByCategory != undefined 
+                    ? GetPostByCategory.length > 0
+                      ? GetPostByCategory.map((post,index) => (
+                        <PostItem key={index} post={post}/>
                       )) : <div className="nopost"><Icon name="edit"/><p>No post found</p><Button as={Link} to="/create" secondary>Add post</Button></div>
                     : 
                     <Loader active inline='centered' />}
                 </Item.Group>
               </Grid.Column>
               <Grid.Column computer={6} mobile={16} tablet={6}>
-                <Sidebar fetchPostsByCategory={this.fetchPostsByCategory} />
+                <Sidebar/>
               </Grid.Column>
             </Grid.Row>
       </React.Fragment>
-    )
+  );
+};
+
+export const FETCH_POSTS = gql`
+query Posts($type:String!){
+  GetPostByCategory(type:$type){
+    _id
+    title
+    content
+    device
+    email
+    firstName
+    lastName
+    country
+    state
+    city
+    zip
+    createdAt
+    updatedAt
   }
+}`;
 
-
-}
-
-
-const FETCH_POSTS = gql`
-  query Posts($type:String!,$skip: Boolean!){
-    GetPostByCategory(type:$type)@skip(if: $skip){
-      _id
-      title
-      content
-      device
-      email
-      firstName
-      lastName
-      country
-      state
-      city
-      zip
-      createdAt
-      updatedAt
-    }
-  }`
-
-
-const FetchPosts = compose(
-  
-  graphql(FETCH_POSTS, {
-    name: 'fetchPosts',
-    options: ownProps => ({
-      variables: {
-        type: ownProps.type,
-        skip:true
-      },
-    }),
+export default (graphql(FETCH_POSTS, {
+  options: props => ({
+    variables: { type: props.match.params.type },
   }),
-  
-)(App)
+}) (LayoutWrapper(Device)));
 
-export default LayoutWrapper(withRouter(FetchPosts))

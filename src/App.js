@@ -10,41 +10,24 @@ import {
   Link,
 } from 'react-router-dom'
 import { Grid, Icon, Item, Loader, Button} from 'semantic-ui-react'
-class App extends Component {
-  
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps !== this.props) {
-      if (nextProps.fetchPosts.GetVerifiedPosts != undefined) {
-         this.setState({posts : nextProps.fetchPosts.GetVerifiedPosts});
-      }
-     
-    }
+
+
+const App = ({ data: { loading, error, GetVerifiedPosts }}) => {
+  if (loading) {
+    return <p>Loading...</p>;
   }
-  componentDidMount = () => {
-     this.props.fetchPosts.refetch({skip:false})
-    .then(res => {
-       //console.log('resposne',res);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  if (error) {
+    return <p>{error.message}</p>;
   }
 
-  fetchPostsByCategory = (type) => {
-     this.props.history.push({
-       pathname: `/device/${type}`,
-      })
-  }
-
-  render() {
-    return (
-      <React.Fragment>
+  return (
+   <React.Fragment>
              <Grid.Row>
               <Grid.Column computer={10} mobile={16} tablet={10}>
                 <Item.Group divided className="wrapper">
-                  {this.state && this.state.posts != undefined 
-                    ? this.state.posts.length > 0
-                      ? this.state.posts.map(post => (
+                  {GetVerifiedPosts && GetVerifiedPosts != undefined 
+                    ? GetVerifiedPosts.length > 0
+                      ? GetVerifiedPosts.map(post => (
                         <PostItem post={post}/>
                       )) : <div className="nopost"><Icon name="edit"/><p>No post found</p><Button as={Link} to="/create" secondary>Add post</Button></div>
                     : 
@@ -56,14 +39,10 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
       </React.Fragment>
-    )
-  }
+  );
+};
 
-
-}
-
-
-const FETCH_POSTS = gql`
+export const FETCH_POSTS = gql`
   query Posts{
     GetVerifiedPosts{
       _id
@@ -82,14 +61,4 @@ const FETCH_POSTS = gql`
     }
   }`
 
-
-const FetchPosts = compose(
-  
-  graphql(FETCH_POSTS, {
-    name: 'fetchPosts',
-   
-  }),
-  
-)(App)
-
-export default LayoutWrapper(withRouter(FetchPosts))
+export default graphql(FETCH_POSTS,{})(LayoutWrapper(App))
