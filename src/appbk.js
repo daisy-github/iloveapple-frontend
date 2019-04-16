@@ -40,9 +40,7 @@ const Posts = () => (
             ))}
           </ul>
         </React.Fragment>
-        <Grid.Row className="wrapper">
-          
-        </Grid.Row>
+       
       );
     }}
   </Query>
