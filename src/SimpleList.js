@@ -1,77 +1,64 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import {
-  Link,
-} from 'react-router-dom'
-import {List } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { List, Accordion, Icon } from "semantic-ui-react";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
-class SimpleList extends Component {  
-  state = { activeIndex: -1 }
+class SimpleList extends Component {
+  state = { activeIndex: -1 };
 
   handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
 
-    this.setState({ activeIndex: newIndex })
-  }
+    this.setState({ activeIndex: newIndex });
+  };
 
-
-  handleCategory = async(type) => {
+  handleCategory = async type => {
     console.log(type);
-  }
+  };
 
   render() {
-    const { activeIndex } = this.state
-    return (     
-            <List>
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/">All</Link>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/device/1">iPhone</Link>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/device/2">iPad</Link>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/device/3" >MacBook</Link>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/device/4">iMac</Link>
-                </List.Content>
-              </List.Item>
-
-              <List.Item>
-                <List.Icon name='angle right' />
-                <List.Content>
-                  <Link to="/device/5">Apple Watch</Link>
-                </List.Content>
-              </List.Item>
-              
-            </List>  
-       
-    )
+    const { data } = this.props;
+    const { activeIndex } = this.state;
+    console.log("device type", data);
+    return (
+      <div>
+        {data.GetDeviceTypes !== undefined
+          ? data.GetDeviceTypes.map((type, index) => (
+              <Accordion>
+                <Accordion.Title
+                  active={activeIndex === 0}
+                  index={0}
+                  onClick={this.handleClick}
+                >
+                  <Icon name="angle right" />
+                  {type.type}
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === 0}>
+                  <List>
+                    <List.Item>
+                      <List.Content>
+                        <Link to="/">Semantic UI</Link>
+                      </List.Content>
+                    </List.Item>
+                  </List>
+                </Accordion.Content>
+              </Accordion>
+            ))
+          : null}
+      </div>
+    );
   }
 }
 
+export const FETCH_DEVICES = gql`
+  query Devices {
+    GetDeviceTypes {
+      type
+    }
+  }
+`;
 
-
-
-
-
-export default withRouter(SimpleList);
+export default graphql(FETCH_DEVICES)(SimpleList);

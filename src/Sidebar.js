@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-import { Grid, Header} from 'semantic-ui-react'
+import { Grid, Header } from "semantic-ui-react";
 import SimpleList from "./SimpleList";
-class Sidebar extends Component {  
-  state = { activeIndex: -1 }
+class Sidebar extends Component {
+  state = { activeIndex: -1 };
 
   handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
 
-    this.setState({ activeIndex: newIndex })
-  }
+    this.setState({ activeIndex: newIndex });
+  };
   render() {
-    const { activeIndex } = this.state
+    const { activeIndex } = this.state;
     return (
       <Grid.Row className="sidebar-right">
         <Grid.Column className="list_block">
-          <Header as='h3'  content='Categories' />
+          <Header as="h3" content="Categories" />
           <SimpleList fetchPostsByCategory={this.props.fetchPostsByCategory} />
-
-        </Grid.Column> 
+        </Grid.Column>
 
         {/*<Grid.Column className="list_block">
           <Header as='h3'  content='Archive' />
@@ -49,15 +48,10 @@ class Sidebar extends Component {
               </List>
             </Accordion.Content>                   
           </Accordion>
-        </Grid.Column>    */}     
-      </Grid.Row> 
-    )
+        </Grid.Column>    */}
+      </Grid.Row>
+    );
   }
 }
-
-
-
-
-
 
 export default withRouter(Sidebar);
