@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { graphql, compose } from "react-apollo";
 import { Link, withRouter } from "react-router-dom";
 import { gql } from "apollo-boost";
-import { Grid, Header, Button } from "semantic-ui-react";
+import { Grid, Header, Button, Checkbox } from "semantic-ui-react";
 import TextField from "@material-ui/core/TextField";
 import LayoutWrapper from "./LayoutWrapper";
 import StateRenderer from "./StateRenderer";
@@ -168,7 +168,7 @@ class Create extends Component {
               </div>
             </div>
             <div className="equal_width">
-              <div>
+              <div className="relative first">
                 <TextField
                   id="outlined-dense"
                   label="Email"
@@ -186,8 +186,20 @@ class Create extends Component {
                       : ""
                   }
                 />
+                <div
+                  className={
+                    this.state.emailerror
+                      ? "accessibility error"
+                      : "accessibility"
+                  }
+                >
+                  <label>
+                    {this.state.emailaccessibility ? "Public" : "Private"}
+                  </label>
+                  <Checkbox toggle onChange={this.setaccessibilityemail} />
+                </div>
               </div>
-              <div>
+              <div className="relative">
                 <TextField
                   id="outlined-dense"
                   label="Phone"
@@ -202,10 +214,22 @@ class Create extends Component {
                   value={this.state.phone}
                   helperText={
                     this.state.phoneerror
-                      ? "Please enter valid Phone Number"
+                      ? "Please enter valid 10 digit Phone Number"
                       : ""
                   }
                 />
+                <div
+                  className={
+                    this.state.phoneerror
+                      ? "accessibility error"
+                      : "accessibility"
+                  }
+                >
+                  <label>
+                    {this.state.phoneaccessibility ? "Public" : "Private"}
+                  </label>
+                  <Checkbox toggle onChange={this.setaccessibilityphone} />
+                </div>
               </div>
             </div>
             <div className="equal_width">
