@@ -81,7 +81,6 @@ const Create = ({ data: { loading, GetCountries }, createPost, history }) => {
             props
           }) => (
             <Form>
-              console.log("props data", this.props)
               <div className="alert alert-warning" role="alert">
                 This is form saves each field on blur
               </div>
