@@ -8,6 +8,9 @@
   "dependencies": {
     "@material-ui/core": "^3.2.2",
     "apollo-boost": "^0.1.16",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "formik": "^1.5.2",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "jquery": "^3.3.1",
@@ -20,7 +23,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
     "read-more-react": "^1.0.6",
-    "semantic-ui-react": "^0.82.5"
+    "semantic-ui-react": "^0.82.5",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
