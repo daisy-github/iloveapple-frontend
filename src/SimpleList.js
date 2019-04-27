@@ -25,8 +25,8 @@ class SimpleList extends Component {
     console.log("device type", data);
     return (
       <div>
-        {data.GetDeviceTypes !== undefined
-          ? data.GetDeviceTypes.map((type, index) => (
+        {data.GetDevices !== undefined
+          ? data.GetDevices.map((type, index) => (
               <Accordion>
                 <Accordion.Title
                   active={activeIndex === 0}
@@ -34,7 +34,7 @@ class SimpleList extends Component {
                   onClick={this.handleClick}
                 >
                   <Icon name="angle right" />
-                  {type.type}
+                  {type.typeName}
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === 0}>
                   <List>
@@ -55,8 +55,12 @@ class SimpleList extends Component {
 
 export const FETCH_DEVICES = gql`
   query Devices {
-    GetDeviceTypes {
-      type
+    GetDevices {
+      typeId
+      typeName
+      device{
+        name
+      }
     }
   }
 `;
