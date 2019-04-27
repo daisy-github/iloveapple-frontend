@@ -436,8 +436,16 @@ form {
     &.textarea {
       margin-top: 8px;
     }
-    p {
-      color: red;
+    &.is-invalid {
+      position: relative;
+      p {
+        color: red;
+        position: absolute;
+        bottom: -14px;
+        &:first-letter {
+          text-transform: uppercase;
+        }
+      }
     }
   }
   .form_action {
@@ -449,6 +457,12 @@ p.errortext {
   margin: 8px 12px 0;
   font-size: 0.75rem;
   color: red;
+}
+.form-group {
+  select {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
 }
 .equal_width {
   display: flex;

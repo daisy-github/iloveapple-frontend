@@ -10,10 +10,10 @@ const CountryField = ({
   const { countries } = props;
   console.log("props data", props);
   return (
-    <div className="form-group">
-      <label>{label}</label>
+    <div className="form-group select">
+      {/* <label>{label}</label> */}
       <select {...field} {...props}>
-        <option value="">select</option>
+        <option value="">Select Country</option>
         {countries !== undefined
           ? countries.map(function(country) {
               return (

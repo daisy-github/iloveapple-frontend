@@ -307,8 +307,14 @@ form .form_field {
     border-radius: 0px !important; }
   form .form_field.textarea {
     margin-top: 8px; }
-  form .form_field p {
-    color: red; }
+  form .form_field.is-invalid {
+    position: relative; }
+    form .form_field.is-invalid p {
+      color: red;
+      position: absolute;
+      bottom: -14px; }
+      form .form_field.is-invalid p:first-letter {
+        text-transform: uppercase; }
 form .form_action {
   margin-top: 30px; }
 
@@ -316,6 +322,10 @@ p.errortext {
   margin: 8px 12px 0;
   font-size: 0.75rem;
   color: red; }
+
+.form-group select {
+  margin-top: 8px;
+  margin-bottom: 10px; }
 
 .equal_width {
   display: flex; }

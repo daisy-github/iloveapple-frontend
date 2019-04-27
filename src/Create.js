@@ -21,7 +21,8 @@ import {
   Image,
   Icon,
   Select,
-  Button
+  Button,
+  Checkbox
 } from "semantic-ui-react";
 let Yup = require("yup");
 const Create = ({ data: { loading, GetCountries }, createPost, history }) => {
@@ -84,103 +85,128 @@ const Create = ({ data: { loading, GetCountries }, createPost, history }) => {
               <div className="alert alert-warning" role="alert">
                 This is form saves each field on blur
               </div>
-              <Field
-                component={TextField}
-                label="Title"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="title"
-              />
-              <Field
-                component={TextArea}
-                name="content"
-                label="Content"
-                rows="4"
-                placeholder="Content"
-                multiline
-                fullWidth="true"
-                className="form_field textarea"
-                margin="normal"
-                variant="outlined"
-              />
-              <Field
-                component={TextField}
-                label="Device"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="device"
-              />
-              <Field
-                component={DeviceField}
-                label="Device Type"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="deviceType"
-              />
-              <Field
-                component={TextField}
-                label="First Name"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="firstName"
-              />
-              <Field
-                component={TextField}
-                label="Last Name"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="lastName"
-              />
-              <Field
-                component={TextField}
-                label="Email"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="email"
-              />
-              <Field
-                component={TextField}
-                label="Phone"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="phone"
-              />
-              <Field
-                component={CountryField}
-                label="Country"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="country"
-                countries={GetCountries}
-              />
-              <div>
-                <StateRenderer country={values.country} />
+              <div className="full_width">
+                <Field
+                  component={TextField}
+                  label="Title"
+                  margin="dense"
+                  variant="outlined"
+                  fullwidth="true"
+                  name="title"
+                />
               </div>
-              <Field
-                component={TextField}
-                label="Zipcode"
-                className="form_field"
-                margin="dense"
-                variant="outlined"
-                fullwidth="true"
-                name="zip"
-              />
+              <div className="full_width">
+                <Field
+                  component={TextArea}
+                  name="content"
+                  label="Content"
+                  rows="4"
+                  placeholder="Content"
+                  multiline
+                  fullWidth="true"
+                  margin="normal"
+                  variant="outlined"
+                />
+              </div>
+              <div className="full_width">
+                <Field
+                  component={TextField}
+                  label="Device"
+                  margin="dense"
+                  variant="outlined"
+                  fullwidth="true"
+                  name="device"
+                />
+              </div>
+              <div className="full_width">
+                <Field
+                  component={DeviceField}
+                  label="Device Type"
+                  margin="dense"
+                  variant="outlined"
+                  fullwidth="true"
+                  name="deviceType"
+                />
+              </div>
+              <div className="equal_width">
+                <div>
+                  <Field
+                    component={TextField}
+                    label="First Name"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="firstName"
+                  />
+                </div>
+                <div>
+                  <Field
+                    component={TextField}
+                    label="Last Name"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="lastName"
+                  />
+                </div>
+              </div>
+              <div className="equal_width">
+                <div className="relative first">
+                  {" "}
+                  <Field
+                    component={TextField}
+                    label="Email"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="email"
+                  />
+                  <div className="accessibility">
+                    <label>Public</label>
+                    <Checkbox toggle />
+                  </div>
+                </div>
+                <div className="relative">
+                  <Field
+                    component={TextField}
+                    label="Phone"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="phone"
+                  />
+                  <div className="accessibility">
+                    <label>Public</label>
+                    <Checkbox toggle />
+                  </div>
+                </div>
+              </div>
+              <div className="equal_width">
+                <div>
+                  <Field
+                    component={CountryField}
+                    label="Country"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="country"
+                    countries={GetCountries}
+                  />
+                  <div>
+                    <StateRenderer country={values.country} />
+                  </div>
+                </div>
+                <div>
+                  <Field
+                    component={TextField}
+                    label="Zipcode"
+                    margin="dense"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="zip"
+                  />
+                </div>
+              </div>
               <Field component={SubmitField} name="submit" label="submit" />
               <DisplayFormikState
                 values={values}

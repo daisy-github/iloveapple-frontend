@@ -5,8 +5,8 @@ const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
   const { countries } = props;
   console.log("props data", props);
   return (
-    <div className="form-group">
-      <label>{label}</label>
+    <div className="form-group select">
+      {/* <label>{label}</label> */}
       <select {...field} {...props}>
         <option value="">Select Device Type</option>
         <option value="1">iPhone</option>
