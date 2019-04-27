@@ -160,15 +160,6 @@ header {
   -moz-background-size: cover;
   -o-background-size: cover;
   color: #fff; }
-  header:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 15px;
-    left: 0;
-    background-image: linear-gradient(to bottom right, rgba(165, 103, 63, 0.86), #a5673f);
-    opacity: 0.6; }
   header .hidden.transition {
     display: none !important; }
   header .header_row {
@@ -182,7 +173,7 @@ header {
     -o-transition: background-size 4s ease-in;
     -webkit-transition: background-size 4s ease-in; }
   header.banner_home {
-    background: url(../banner.jpg), linear-gradient(to top right, #a85a21, #56280b);
+    background: linear-gradient(to bottom right, rgba(165, 103, 63, 0.38), #d6956c), url(../banner.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -323,6 +314,16 @@ p.errortext {
   font-size: 0.75rem;
   color: red; }
 
+.form-group.select {
+  position: relative; }
+  .form-group.select .invalid-feedback {
+    color: red;
+    position: absolute;
+    bottom: -8px;
+    font-size: 12px;
+    padding: 0 10px; }
+    .form-group.select .invalid-feedback:first-letter {
+      text-transform: uppercase; }
 .form-group select {
   margin-top: 8px;
   margin-bottom: 10px; }
@@ -338,8 +339,9 @@ p.errortext {
 
 @media screen and (max-width: 991px) {
   header .logo {
-    font-size: 40px;
-    line-height: 40px; }
+    font-size: 35px;
+    line-height: 40px;
+    margin-top: 10px; }
   header .navigation.ui.menu a.item:not(.button_mobile) {
     display: none; }
   header .navigation.ui.menu a.item.button_mobile {
@@ -415,5 +417,17 @@ p.errortext {
 .posts table td.actions button {
   padding: 5px 10px !important;
   font-size: 12px; }
+
+@media screen and (max-width: 500px) {
+  header.banner_home {
+    background-position: 0%; }
+
+  .equal_width {
+    flex-direction: column; }
+    .equal_width > div {
+      width: 100%;
+      padding: 0 !important; }
+      .equal_width > div.relative.first .accessibility {
+        right: 5px; } }
 
 /*# sourceMappingURL=main.css.map */

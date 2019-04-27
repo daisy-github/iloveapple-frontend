@@ -13,7 +13,9 @@ const CountryField = ({
     <div className="form-group select">
       {/* <label>{label}</label> */}
       <select {...field} {...props}>
-        <option value="">Select Country</option>
+        <option value="" disabled>
+          Select Country
+        </option>
         {countries !== undefined
           ? countries.map(function(country) {
               return (

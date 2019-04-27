@@ -211,20 +211,20 @@ body {
   }
 }
 header {
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 15px;
-    left: 0;
-    background-image: linear-gradient(
-      to bottom right,
-      rgba(165, 103, 63, 0.86),
-      #a5673f
-    );
-    opacity: 0.6;
-  }
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 15px;
+  //   left: 0;
+  //   background-image: linear-gradient(
+  //     to bottom right,
+  //     rgba(165, 103, 63, 0.86),
+  //     #a5673f
+  //   );
+  //   opacity: 0.6;
+  // }
   .hidden.transition {
     display: none !important;
   }
@@ -248,8 +248,12 @@ header {
   color: $white;
   &.banner_home {
     //background-image: url(https://wp-themes.com/wp-content/themes/illdy/layout/images/blog/blog-header.png);
-    background: url(../banner.jpg),
-      linear-gradient(to top right, #a85a21, #56280b);
+    background: linear-gradient(
+        to bottom right,
+        rgba(165, 103, 63, 0.38),
+        #d6956c
+      ),
+      url(../banner.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -459,6 +463,19 @@ p.errortext {
   color: red;
 }
 .form-group {
+  &.select {
+    position: relative;
+    .invalid-feedback {
+      color: red;
+      position: absolute;
+      bottom: -8px;
+      font-size: 12px;
+      padding: 0 10px;
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
   select {
     margin-top: 8px;
     margin-bottom: 10px;
@@ -479,8 +496,9 @@ p.errortext {
 @media screen and (max-width: 991px) {
   header {
     .logo {
-      font-size: 40px;
+      font-size: 35px;
       line-height: 40px;
+      margin-top: 10px;
     }
     .navigation {
       &.ui.menu {
@@ -624,6 +642,28 @@ p.errortext {
           font-size: 12px;
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  header {
+    &.banner_home {
+      background-position: 0%;
+    }
+  }
+
+  .equal_width {
+    flex-direction: column;
+    > div {
+      &.relative {
+        &.first {
+          .accessibility {
+            right: 5px;
+          }
+        }
+      }
+      width: 100%;
+      padding: 0 !important;
     }
   }
 }

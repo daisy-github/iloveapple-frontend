@@ -8,7 +8,9 @@ const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
     <div className="form-group select">
       {/* <label>{label}</label> */}
       <select {...field} {...props}>
-        <option value="">Select Device Type</option>
+        <option value="" disabled>
+          Select Device Type
+        </option>
         <option value="1">iPhone</option>
         <option value="2">iPad</option>
         <option value="3">MacBook</option>
