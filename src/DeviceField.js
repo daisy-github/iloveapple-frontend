@@ -2,8 +2,7 @@ import React from "react";
 
 const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
   const hasError = touched[field.name] && errors[field.name];
-  const { countries } = props;
-  console.log("props data", props);
+  const { deviceTypes } = props;
   return (
     <div className="form-group select">
       {/* <label>{label}</label> */}
@@ -11,11 +10,15 @@ const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
         <option value="" disabled>
           Select Device Type
         </option>
-        <option value="1">iPhone</option>
-        <option value="2">iPad</option>
-        <option value="3">MacBook</option>
-        <option value="4">iMac</option>
-        <option value="5">Apple Watch</option>
+        {deviceTypes !== undefined
+          ? deviceTypes.map(function(deviceTypes, index) {
+              return (
+                <option key={index} value={deviceTypes.type}>
+                  {deviceTypes.type}
+                </option>
+              );
+            })
+          : null}
       </select>
       {hasError && <div className="invalid-feedback">{errors[field.name]}</div>}
     </div>
@@ -23,3 +26,13 @@ const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
 };
 
 export default DeviceField;
+
+// export const FETCH_DEVICE_TYPES = gql`
+//   query fetchDevicetTypes {
+//     GetDeviceTypes {
+//       type
+//     }
+//   }
+// `;
+
+// export default graphql(FETCH_DEVICE_TYPES, {})(DeviceField);
