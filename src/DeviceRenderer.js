@@ -3,19 +3,21 @@ import { gql } from "apollo-boost";
 import LayoutWrapper from "./LayoutWrapper";
 import { graphql, Query } from "react-apollo";
 
-const DeviceRenderer = parentprops => (
-  <Query query={FETCH_DEVICES} variables={{ country: parentprops.country }}>
+const DeviceRenderer = ({ field, form: { touched, errors }, label, ...props }) => {
+  const hasError = touched[field.name] && errors[field.name];
+   return(
+  <Query query={FETCH_DEVICES} variables={{ typeId: props.typeId }}>
     {({ data, error, loading }) => {
       if (error) return "💩 Oops!";
       if (loading) return "Patience young grasshopper...";
 
       return (
-        <select name="state" id="state">
+        <select {...field} {...props}>
           <option value="">Select Device</option>
-          {data.GetDevices != null && data.GetDevices !== undefined
-            ? data.GetDevices.device.map(function(device, index) {
+          {data.GetDevicesById != null && data.GetDevicesById !== undefined
+            ? data.GetDevicesById.device.map(function(device, index) {
                 return (
-                  <option key={index} value={device.name}>
+                  <option key={index} value={device._id}>
                     {device.name}
                   </option>
                 );
@@ -25,14 +27,16 @@ const DeviceRenderer = parentprops => (
       );
     }}
   </Query>
-);
+   )
+};
 
 const FETCH_DEVICES = gql`
-  query fetchDevices($country: String!) {
-    GetDevices(type: $type) {
+  query fetchDevices($typeId: String!) {
+    GetDevicesById(typeId: $typeId) {
       typeId
       typeName
       device {
+        _id
         name
       }
     }

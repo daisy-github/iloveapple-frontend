@@ -8,7 +8,6 @@ const CountryField = ({
 }) => {
   const hasError = touched[field.name] && errors[field.name];
   const { countries } = props;
-  console.log("props data", props);
   return (
     <div className="form-group select">
       {/* <label>{label}</label> */}

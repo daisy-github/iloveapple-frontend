@@ -11,10 +11,10 @@ const DeviceField = ({ field, form: { touched, errors }, label, ...props }) => {
           Select Device Type
         </option>
         {deviceTypes !== undefined
-          ? deviceTypes.map(function(deviceTypes, index) {
+          ? deviceTypes.map(function(deviceType, index) {
               return (
-                <option key={index} value={deviceTypes.type}>
-                  {deviceTypes.type}
+                <option key={index} value={deviceType._id}>
+                  {deviceType.type}
                 </option>
               );
             })

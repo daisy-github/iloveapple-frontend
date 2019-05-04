@@ -25,9 +25,9 @@ class SimpleList extends Component {
     console.log("device type", data);
     return (
       <div>
-        {data.GetDeviceTypes !== undefined
-          ? data.GetDeviceTypes.map((type, index) => (
-              <Accordion>
+        {data.GetDevices !== undefined
+          ? data.GetDevices.map((type, index) => (
+              <Accordion key={index}>
                 <Accordion.Title
                   active={activeIndex === 0}
                   index={0}
@@ -37,13 +37,16 @@ class SimpleList extends Component {
                   {type.type}
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === 0}>
+                {data.GetDevices !== undefined
+          ? data.GetDevices.device.map((device, index) => (
                   <List>
                     <List.Item>
                       <List.Content>
-                        <Link to="/">Semantic UI</Link>
+                        <Link to="/">{device.name}</Link>
                       </List.Content>
                     </List.Item>
                   </List>
+          )):null}
                 </Accordion.Content>
               </Accordion>
             ))
@@ -54,11 +57,15 @@ class SimpleList extends Component {
 }
 
 export const FETCH_DEVICES = gql`
-  query Devices {
-    GetDeviceTypes {
-      type
+query fetchDevices {
+  GetDevices {
+    typeId
+    typeName
+    device {
+      name
     }
   }
+}
 `;
 
 export default graphql(FETCH_DEVICES)(SimpleList);

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { List, Accordion, Icon } from "semantic-ui-react";
+import { List, Accordion, Icon ,Grid,Header} from "semantic-ui-react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import DeviceRenderer from "./DeviceRenderer";
 
 class SimpleList extends Component {
   state = { activeIndex: -1 };
@@ -24,7 +25,9 @@ class SimpleList extends Component {
     const { activeIndex } = this.state;
     console.log("device type", data);
     return (
-      <div>
+      <Grid.Row className="sidebar-right">
+        <Grid.Column className="list_block">
+          <Header as='h3'  content='Archive' />
         {data.GetDevices !== undefined
           ? data.GetDevices.map((type, index) => (
               <Accordion>
@@ -43,7 +46,7 @@ class SimpleList extends Component {
                         <List>
                           <List.Item>
                             <List.Content>
-                              <Link to="/">Semantic UI</Link>
+                              <Link to={"/device/"+device._id}>{device.name}</Link>
                             </List.Content>
                           </List.Item>
                         </List>
@@ -53,21 +56,23 @@ class SimpleList extends Component {
               </Accordion>
             ))
           : null}
-      </div>
+       </Grid.Column> 
+      </Grid.Row>
     );
   }
 }
 
 export const FETCH_DEVICES = gql`
-  query Devices {
-    GetDevices {
-      typeId
-      typeName
-      device {
-        name
-      }
+query fetchDevices {
+  GetDevices {
+    typeId
+    typeName
+    device {
+      _id
+      name
     }
   }
+}
 `;
 
 export default graphql(FETCH_DEVICES)(SimpleList);

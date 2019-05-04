@@ -10,6 +10,7 @@ import DeviceField from "./DeviceField";
 import LayoutWrapper from "./LayoutWrapper";
 import { withRouter } from "react-router-dom";
 import StateRenderer from "./StateRenderer";
+import DeviceRenderer from "./DeviceRenderer";
 import { Grid, Button, Checkbox } from "semantic-ui-react";
 let Yup = require("yup");
 
@@ -24,7 +25,6 @@ class Create extends React.Component {
     this.setState({ emailaccessibility: !this.state.emailaccessibility });
   };
   render() {
-    console.log("props data", this.props);
     const {
       data: { loading, GetCountries },
       createPost,
@@ -53,11 +53,13 @@ class Create extends React.Component {
                         phone: "",
                         zip: "",
                         country: "",
-                        deviceType: ""
+                        deviceType: "",
+                        state:""
                       }}
                       validationSchema={Yup.object().shape({
                         title: Yup.string().required(),
                         content: Yup.string().required(),
+                        deviceType: Yup.string().required(),
                         device: Yup.string().required(),
                         firstName: Yup.string().required(),
                         lastName: Yup.string().required(),
@@ -67,9 +69,10 @@ class Create extends React.Component {
                         phone: Yup.number().required(),
                         zip: Yup.number().required(),
                         country: Yup.string().required(),
-                        deviceType: Yup.string().required()
+                        state: Yup.string().required(),
                       })}
                       onSubmit={values => {
+                       // console.log('====device====',values);return false;
                         if (values) {
                           createPost({ data: values })
                             .then((_res, loading, error) => {
@@ -86,6 +89,7 @@ class Create extends React.Component {
                         }
                       }}
                       render={({ values }) => (
+                       
                         <Form>
                           <div className="alert alert-warning" role="alert">
                             This is form saves each field on blur
@@ -125,17 +129,16 @@ class Create extends React.Component {
                             />
                           </div>
                           <div>
-                            <DeviceRenderer type={values.type} />
-                          </div>
-                          <div className="full_width">
-                            <Field
-                              component={TextField}
+                          <Field
+                              component={DeviceRenderer}
                               label="Device"
                               margin="dense"
                               variant="outlined"
                               fullwidth="true"
                               name="device"
+                              typeId={values.deviceType} 
                             />
+                            
                           </div>
 
                           <div className="equal_width">
@@ -217,7 +220,15 @@ class Create extends React.Component {
                                 countries={GetCountries}
                               />
                               <div>
-                                <StateRenderer country={values.country} />
+                              <Field
+                                component={StateRenderer}
+                                label="State"
+                                margin="dense"
+                                variant="outlined"
+                                fullwidth="true"
+                                name="state"
+                                country={values.country}
+                              />
                               </div>
                             </div>
                             <div>
@@ -284,6 +295,7 @@ const FETCH_COUNTRIES = gql`
 const FETCH_DEVICE_TYPES = gql`
   query fetchDevicetTypes {
     GetDeviceTypes {
+      _id
       type
     }
   }

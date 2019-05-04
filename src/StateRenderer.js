@@ -3,14 +3,16 @@ import { gql } from "apollo-boost";
 import LayoutWrapper from "./LayoutWrapper";
 import { graphql, Query } from "react-apollo";
 
-const StateRenderer = parentprops => (
-  <Query query={FETCH_STATES} variables={{ country: parentprops.country }}>
+const StateRenderer = ({ field, form: { touched, errors }, label, ...props }) => {
+  const hasError = touched[field.name] && errors[field.name];
+  return(
+  <Query query={FETCH_STATES} variables={{ country: props.country }}>
     {({ data, error, loading }) => {
       if (error) return "💩 Oops!";
       if (loading) return "Patience young grasshopper...";
 
       return (
-        <select name="state" id="state">
+        <select {...field} {...props}>
           <option value="">Select State</option>
           {data.GetStates != null && data.GetStates.states != undefined
             ? data.GetStates.states.map(function(state) {
@@ -25,7 +27,9 @@ const StateRenderer = parentprops => (
       );
     }}
   </Query>
-);
+  )
+}
+
 
 const FETCH_STATES = gql`
   query fetchStates($country: String!) {
