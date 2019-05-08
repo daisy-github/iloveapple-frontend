@@ -54,7 +54,9 @@ class Create extends React.Component {
                         zip: "",
                         country: "",
                         deviceType: "",
-                        state:""
+                        state:"",
+                        emailaccessibility:this.state.emailaccessibility,
+                        phoneaccessibility:this.state.phoneaccessibility
                       }}
                       validationSchema={Yup.object().shape({
                         title: Yup.string().required(),
@@ -72,7 +74,8 @@ class Create extends React.Component {
                         state: Yup.string().required(),
                       })}
                       onSubmit={values => {
-                       // console.log('====device====',values);return false;
+                        values['emailaccessibility'] = this.state.emailaccessibility;
+                        values['phoneaccessibility'] = this.state.phoneaccessibility;
                         if (values) {
                           createPost({ data: values })
                             .then((_res, loading, error) => {
@@ -181,6 +184,7 @@ class Create extends React.Component {
                                     : "Private"}
                                 </label>
                                 <Checkbox
+                                   name="emailaccessibility"
                                   toggle
                                   onChange={this.setaccessibilityemail}
                                 />
@@ -202,6 +206,7 @@ class Create extends React.Component {
                                     : "Private"}
                                 </label>
                                 <Checkbox
+                                name="phoneaccessibility"
                                   toggle
                                   onChange={this.setaccessibilityphone}
                                 />

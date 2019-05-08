@@ -220,7 +220,7 @@ header.banner_home {
       rgba(165, 103, 63, 0.38),
       #d6956c
     ),
-    url(../banner1.jpg);
+    url(../banner.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

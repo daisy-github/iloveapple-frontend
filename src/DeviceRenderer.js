@@ -8,6 +8,7 @@ const DeviceRenderer = ({ field, form: { touched, errors }, label, ...props }) =
    return(
   <Query query={FETCH_DEVICES} variables={{ typeId: props.typeId }}>
     {({ data, error, loading }) => {
+      console.log('error msg',error);
       if (error) return "💩 Oops!";
       if (loading) return "Patience young grasshopper...";
 
