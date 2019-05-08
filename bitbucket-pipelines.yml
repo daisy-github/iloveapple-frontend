@@ -8,7 +8,7 @@ image: node:6.9.4
 pipelines:
   default:
     - step:
-        caches:
-          - node
-        script: 
-        - git push https://heroku:f96707f5-6cde-4d80-bbc4-86018aa43c29@git.heroku.com/iloveapple-frontend.git HEAD
+        name: Manual step
+        script:
+          - git push https://heroku:f96707f5-6cde-4d80-bbc4-86018aa43c29@git.heroku.com/iloveapple-backend.git HEAD
+
