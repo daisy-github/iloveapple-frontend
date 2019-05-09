@@ -7,7 +7,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import "./index.css";
 import RootContainer from "./RootContainer";
 const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://96d073d1.ngrok.io/graphql" }),
+  link: new HttpLink({ uri: "https://36f0161b.ngrok.io/graphql" }),
   cache: new InMemoryCache()
 });
 
